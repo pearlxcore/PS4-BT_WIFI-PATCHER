@@ -7,8 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using bt_wifi;
-using Tools;
 using System.IO;
 using System.Reflection;
 using System.IO.Compression;
