@@ -7,9 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using nor4ps;
+using bt_wifi;
 using Tools;
 using System.IO;
+using System.Reflection;
+using System.IO.Compression;
 
 namespace PS4_BT_WIFI_PATCHER
 {
@@ -83,7 +85,7 @@ namespace PS4_BT_WIFI_PATCHER
         }
 
         private void CheckTorusFirmware (string str)
-        {
+        { 
             if (str == "s")
             {
 
@@ -97,11 +99,11 @@ namespace PS4_BT_WIFI_PATCHER
             //get dump's torus firmware type
             //compare with known patches
             //enable patch button if firmware is invalid
-            bufferA = PS4Nor.GetPatch(tbLoadDump.Text);
+            bufferA = BT_WIFI.GetPatch(tbLoadDump.Text);
             if (Tool.CompareBytes(bufferA, Patch_1) == true && Tool.CompareBytes(bufferA, FF_16) == false)
             {
-                bufferB = PS4Nor.GetPatch_1(null);
-                bufferC = PS4Nor.GetOriginalValue1(tbLoadDump.Text);
+                bufferB = BT_WIFI.GetPatch_1(null);
+                bufferC = BT_WIFI.GetOriginalValue1(tbLoadDump.Text);
                 if (Tool.CompareBytes (bufferB, bufferC) == true)
                 {
                     tbFWStatus.ForeColor = Color.Green;
@@ -119,8 +121,8 @@ namespace PS4_BT_WIFI_PATCHER
             }
             else if (Tool.CompareBytes(bufferA, Patch_2) == true && Tool.CompareBytes(bufferA, FF_16) == false)
             {
-                bufferB = PS4Nor.GetPatch_2(null);
-                bufferC = PS4Nor.GetOriginalValue2(tbLoadDump.Text);
+                bufferB = BT_WIFI.GetPatch_2(null);
+                bufferC = BT_WIFI.GetOriginalValue2(tbLoadDump.Text);
                 if (Tool.CompareBytes(bufferB, bufferC) == true)
                 {
                     tbFWStatus.ForeColor = Color.Green;
@@ -138,8 +140,8 @@ namespace PS4_BT_WIFI_PATCHER
             }
             else if (Tool.CompareBytes(bufferA, Patch_3) == true && Tool.CompareBytes(bufferA, FF_16) == false)
             {
-                bufferB = PS4Nor.GetPatch_3(null);
-                bufferC = PS4Nor.GetOriginalValue3(tbLoadDump.Text);
+                bufferB = BT_WIFI.GetPatch_3(null);
+                bufferC = BT_WIFI.GetOriginalValue3(tbLoadDump.Text);
                 if (Tool.CompareBytes(bufferB, bufferC) == true)
                 {
                     tbFWStatus.ForeColor = Color.Green;
@@ -157,8 +159,8 @@ namespace PS4_BT_WIFI_PATCHER
             }
             else if (Tool.CompareBytes(bufferA, Patch_4) == true && Tool.CompareBytes(bufferA, FF_16) == false)
             {
-                bufferB = PS4Nor.GetPatch_4(null);
-                bufferC = PS4Nor.GetOriginalValue4(tbLoadDump.Text);
+                bufferB = BT_WIFI.GetPatch_4(null);
+                bufferC = BT_WIFI.GetOriginalValue4(tbLoadDump.Text);
                 if (Tool.CompareBytes(bufferB, bufferC) == true)
                 {
                     tbFWStatus.ForeColor = Color.Green;
@@ -176,8 +178,8 @@ namespace PS4_BT_WIFI_PATCHER
             }
             else if (Tool.CompareBytes(bufferA, Patch_5) == true && Tool.CompareBytes(bufferA, FF_16) == false)
             {
-                bufferB = PS4Nor.GetPatch_5(null);
-                bufferC = PS4Nor.GetOriginalValue5(tbLoadDump.Text);
+                bufferB = BT_WIFI.GetPatch_5(null);
+                bufferC = BT_WIFI.GetOriginalValue5(tbLoadDump.Text);
                 if (Tool.CompareBytes(bufferB, bufferC) == true)
                 {
                     tbFWStatus.ForeColor = Color.Green;
@@ -195,8 +197,8 @@ namespace PS4_BT_WIFI_PATCHER
             }
             else if (Tool.CompareBytes(bufferA, Patch_6) == true && Tool.CompareBytes(bufferA, FF_16) == false)
             {
-                bufferB = PS4Nor.GetPatch_6(null);
-                bufferC = PS4Nor.GetOriginalValue6(tbLoadDump.Text);
+                bufferB = BT_WIFI.GetPatch_6(null);
+                bufferC = BT_WIFI.GetOriginalValue6(tbLoadDump.Text);
                 if (Tool.CompareBytes(bufferB, bufferC) == true)
                 {
                     tbFWStatus.ForeColor = Color.Green;
@@ -214,8 +216,8 @@ namespace PS4_BT_WIFI_PATCHER
             }
             else if (Tool.CompareBytes(bufferA, Patch_7) == true && Tool.CompareBytes(bufferA, FF_16) == false)
             {
-                bufferB = PS4Nor.GetPatch_7(null);
-                bufferC = PS4Nor.GetOriginalValue7(tbLoadDump.Text);
+                bufferB = BT_WIFI.GetPatch_7(null);
+                bufferC = BT_WIFI.GetOriginalValue7(tbLoadDump.Text);
                 if (Tool.CompareBytes(bufferB, bufferC) == true)
                 {
                     tbFWStatus.ForeColor = Color.Green;
@@ -233,8 +235,8 @@ namespace PS4_BT_WIFI_PATCHER
             }
             else if (Tool.CompareBytes(bufferA, Patch_8) == true && Tool.CompareBytes(bufferA, FF_16) == false)
             {
-                bufferB = PS4Nor.GetPatch_8(null);
-                bufferC = PS4Nor.GetOriginalValue8(tbLoadDump.Text);
+                bufferB = BT_WIFI.GetPatch_8(null);
+                bufferC = BT_WIFI.GetOriginalValue8(tbLoadDump.Text);
                 if (Tool.CompareBytes(bufferB, bufferC) == true)
                 {
                     tbFWStatus.ForeColor = Color.Green;
@@ -252,8 +254,8 @@ namespace PS4_BT_WIFI_PATCHER
             }
             else if (Tool.CompareBytes(bufferA, Patch_9) == true && Tool.CompareBytes(bufferA, FF_16) == false)
             {
-                bufferB = PS4Nor.GetPatch_9(null);
-                bufferC = PS4Nor.GetOriginalValue9(tbLoadDump.Text);
+                bufferB = BT_WIFI.GetPatch_9(null);
+                bufferC = BT_WIFI.GetOriginalValue9(tbLoadDump.Text);
                 if (Tool.CompareBytes(bufferB, bufferC) == true)
                 {
                     tbFWStatus.ForeColor = Color.Green;
@@ -271,8 +273,8 @@ namespace PS4_BT_WIFI_PATCHER
             }
             else if (Tool.CompareBytes(bufferA, Patch_10) == true && Tool.CompareBytes(bufferA, FF_16) == false)
             {
-                bufferB = PS4Nor.GetPatch_10(null);
-                bufferC = PS4Nor.GetOriginalValue10(tbLoadDump.Text);
+                bufferB = BT_WIFI.GetPatch_10(null);
+                bufferC = BT_WIFI.GetOriginalValue10(tbLoadDump.Text);
                 if (Tool.CompareBytes(bufferB, bufferC) == true)
                 {
                     tbFWStatus.ForeColor = Color.Green;
@@ -290,8 +292,8 @@ namespace PS4_BT_WIFI_PATCHER
             }
             else if (Tool.CompareBytes(bufferA, Patch_11) == true && Tool.CompareBytes(bufferA, FF_16) == false)
             {
-                bufferB = PS4Nor.GetPatch_11(null);
-                bufferC = PS4Nor.GetOriginalValue11(tbLoadDump.Text);
+                bufferB = BT_WIFI.GetPatch_11(null);
+                bufferC = BT_WIFI.GetOriginalValue11(tbLoadDump.Text);
                 if (Tool.CompareBytes(bufferB, bufferC) == true)
                 {
                     tbFWStatus.ForeColor = Color.Green;
@@ -309,8 +311,8 @@ namespace PS4_BT_WIFI_PATCHER
             }
             else if (Tool.CompareBytes(bufferA, Patch_12) == true && Tool.CompareBytes(bufferA, FF_16) == false)
             {
-                bufferB = PS4Nor.GetPatch_12(null);
-                bufferC = PS4Nor.GetOriginalValue12(tbLoadDump.Text);
+                bufferB = BT_WIFI.GetPatch_12(null);
+                bufferC = BT_WIFI.GetOriginalValue12(tbLoadDump.Text);
                 if (Tool.CompareBytes(bufferB, bufferC) == true)
                 {
                     tbFWStatus.ForeColor = Color.Green;
@@ -328,8 +330,8 @@ namespace PS4_BT_WIFI_PATCHER
             }
             else if (Tool.CompareBytes(bufferA, Patch_13) == true && Tool.CompareBytes(bufferA, FF_16) == false)
             {
-                bufferB = PS4Nor.GetPatch_13(null);
-                bufferC = PS4Nor.GetOriginalValue13(tbLoadDump.Text);
+                bufferB = BT_WIFI.GetPatch_13(null);
+                bufferC = BT_WIFI.GetOriginalValue13(tbLoadDump.Text);
                 if (Tool.CompareBytes(bufferB, bufferC) == true)
                 {
                     tbFWStatus.ForeColor = Color.Green;
@@ -367,14 +369,42 @@ namespace PS4_BT_WIFI_PATCHER
             About.ShowDialog();
         }
 
+        private static void Extract(string nameSpace, string outDirectory, string internalFilePath, string resourceName)
+        {
+            Assembly assembly = Assembly.GetCallingAssembly();
+
+            using (Stream s = assembly.GetManifestResourceStream(nameSpace + "." + (internalFilePath == "" ? "" : internalFilePath + ".") + resourceName))
+
+            using (BinaryReader r = new BinaryReader(s))
+
+            using (FileStream fs = new FileStream(outDirectory + "\\" + resourceName, FileMode.OpenOrCreate))
+
+            using (BinaryWriter w = new BinaryWriter(fs))
+
+                w.Write(r.ReadBytes((int)s.Length));
+
+        }
+
+
         private void Form1_Load(object sender, EventArgs e)
         {
-            
-            if (!Directory.Exists(@"Patches"))
+            string path = Environment.CurrentDirectory;
+
+            Extract("PS4_BT_WIFI_PATCHER", path, "Resources", "Patches.zip");
+            ZipFile.ExtractToDirectory(@"Patches.zip", path + "\\Patches");
+            File.Delete("Patches.zip");
+
+            /*if (!Directory.Exists(@"Patches"))
             {
                 MessageBox.Show("Please included 'Patches' folder!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Application.Exit();
-            }
+            }*/
+        }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            string path = Environment.CurrentDirectory;
+            Directory.Delete(path + "\\Patches", true);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -383,7 +413,7 @@ namespace PS4_BT_WIFI_PATCHER
             {
                 tbLoadDump.Text = openFileDialog1.FileName;
                 bufferString = tbLoadDump.Text.Replace(" ", "");
-                if (PS4Nor.CheckHeader(tbLoadDump.Text) == true)
+                if (BT_WIFI.CheckHeader(tbLoadDump.Text) == true)
                 {
                     CheckTorusFirmware("o");
                 }
