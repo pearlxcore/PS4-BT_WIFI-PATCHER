@@ -1,9 +1,0 @@
-C:\Users\pearlxcore\source\repos\BT_WIFI\BT_WIFI\bin\Debug\BT_WIFI.dll
-C:\Users\pearlxcore\source\repos\BT_WIFI\BT_WIFI\bin\Debug\BT_WIFI.pdb
-C:\Users\pearlxcore\source\repos\BT_WIFI\BT_WIFI\bin\Debug\Tools.dll
-C:\Users\pearlxcore\source\repos\BT_WIFI\BT_WIFI\bin\Debug\Tools.xml
-C:\Users\pearlxcore\source\repos\BT_WIFI\BT_WIFI\obj\Debug\BT_WIFI.csprojAssemblyReference.cache
-C:\Users\pearlxcore\source\repos\BT_WIFI\BT_WIFI\obj\Debug\BT_WIFI.csproj.CoreCompileInputs.cache
-C:\Users\pearlxcore\source\repos\BT_WIFI\BT_WIFI\obj\Debug\BT_WIFI.csproj.CopyComplete
-C:\Users\pearlxcore\source\repos\BT_WIFI\BT_WIFI\obj\Debug\BT_WIFI.dll
-C:\Users\pearlxcore\source\repos\BT_WIFI\BT_WIFI\obj\Debug\BT_WIFI.pdb
