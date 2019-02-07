@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.IO;
 using System.Reflection;
 using System.IO.Compression;
+using System.Security.Cryptography;
 
 namespace PS4_BT_WIFI_PATCHER
 {
@@ -73,9 +74,10 @@ namespace PS4_BT_WIFI_PATCHER
 
         #endregion patchMagic
 
-        static string bufferString;
+        static string bufferString, path;
         byte[] dump;
         static byte[] bufferA, bufferB, bufferC = new byte[0];
+        static int flag = 0;
 
         public Form1()
         {
@@ -83,7 +85,10 @@ namespace PS4_BT_WIFI_PATCHER
         }
 
         private void CheckTorusFirmware (string str)
-        { 
+        {
+            tbActualMD5.ForeColor = Color.Black;
+            
+
             if (str == "s")
             {
 
@@ -97,6 +102,313 @@ namespace PS4_BT_WIFI_PATCHER
             //get dump's torus firmware type
             //compare with known patches
             //enable patch button if firmware is invalid
+
+            string directoryPath = Environment.CurrentDirectory;
+
+            if (File.Exists(directoryPath + @"\C0020001_extracted\C0020001.bin"))
+            {
+                txtMd5.Text = BytesToString(GetHashMD5(directoryPath + @"\C0020001_extracted\C0020001.bin"));
+
+                FileInfo f = new FileInfo(directoryPath + @"\C0020001_extracted\C0020001.bin");
+                long fileSize = f.Length;
+                tbSize.Text = fileSize.ToString("###,###") + " Bytes";
+                string value = tbSize.Text;
+
+                if (fileSize.ToString() == "453028" && txtMd5.Text == "42abb3b655f6085f029a408fe7e94831")
+                {
+                    bufferB = BT_WIFI.GetPatch_1(null);
+                    bufferC = BT_WIFI.GetOriginalValue1(directoryPath + @"\C0020001_extracted\C0020001.bin");
+                    if (Tool.CompareBytes(bufferB, bufferC) == true)
+                    {
+                        txtMd5.ForeColor = Color.Green;
+                        tbFWStatus.ForeColor = Color.Green;
+                        tbFWStatus.Text = "OK";
+                        button2.Enabled = false;
+                    }
+                    else
+                    {
+                        txtMd5.ForeColor = Color.Red;
+                        tbFWStatus.ForeColor = Color.Red;
+                        tbFWStatus.Text = "BAD";
+                        button2.Enabled = true;
+                    }
+                    tbActualMD5.Text = "42abb3b655f6085f029a408fe7e94831";
+                    tbPatchType.Text = "Patch 1";
+                }
+                else if (fileSize.ToString() == "452764" && txtMd5.Text == "92d4149f8c165abaf88a3ec93c491980")
+                {
+
+                    bufferB = BT_WIFI.GetPatch_2(null);
+                    bufferC = BT_WIFI.GetOriginalValue2(directoryPath + @"\C0020001_extracted\C0020001.bin");
+                    if (Tool.CompareBytes(bufferB, bufferC) == true)
+                    {
+                        txtMd5.ForeColor = Color.Green;
+                        tbFWStatus.ForeColor = Color.Green;
+                        tbFWStatus.Text = "OK";
+                        button2.Enabled = false;
+                    }
+                    else
+                    {
+                        txtMd5.ForeColor = Color.Red;
+                        tbFWStatus.ForeColor = Color.Red;
+                        tbFWStatus.Text = "BAD";
+                        button2.Enabled = true;
+                    }
+                    tbActualMD5.Text = "92d4149f8c165abaf88a3ec93c491980";
+                    tbPatchType.Text = "Patch 2";
+                }
+                else if (fileSize.ToString() == "452728" && txtMd5.Text == "86aede5276e8948b2ca6eed320e72266")
+                {
+                    bufferB = BT_WIFI.GetPatch_3(null);
+                    bufferC = BT_WIFI.GetOriginalValue3(directoryPath + @"\C0020001_extracted\C0020001.bin");
+                    if (Tool.CompareBytes(bufferB, bufferC) == true)
+                    {
+                        txtMd5.ForeColor = Color.Green;
+                        tbFWStatus.ForeColor = Color.Green;
+                        tbFWStatus.Text = "OK";
+                        button2.Enabled = false;
+                    }
+                    else
+                    {
+                        txtMd5.ForeColor = Color.Red;
+                        tbFWStatus.ForeColor = Color.Red;
+                        tbFWStatus.Text = "BAD";
+                        button2.Enabled = true;
+                    }
+                    tbActualMD5.Text = "86aede5276e8948b2ca6eed320e72266";
+                    tbPatchType.Text = "Patch 3";
+                }
+                else if (fileSize.ToString() == "451312" && txtMd5.Text == "571a67c2d0f64ab8cf1a65c201f0c60d")
+                {
+                    bufferB = BT_WIFI.GetPatch_4(null);
+                    bufferC = BT_WIFI.GetOriginalValue4(directoryPath + @"\C0020001_extracted\C0020001.bin");
+                    if (Tool.CompareBytes(bufferB, bufferC) == true)
+                    {
+                        txtMd5.ForeColor = Color.Green;
+                        tbFWStatus.ForeColor = Color.Green;
+                        tbFWStatus.Text = "OK";
+                        button2.Enabled = false;
+                    }
+                    else
+                    {
+                        txtMd5.ForeColor = Color.Red;
+                        tbFWStatus.ForeColor = Color.Red;
+                        tbFWStatus.Text = "BAD";
+                        button2.Enabled = true;
+                    }
+                    tbActualMD5.Text = "571a67c2d0f64ab8cf1a65c201f0c60d";
+                    tbPatchType.Text = "Patch 4";
+                }
+                else if (fileSize.ToString() == "450940" && txtMd5.Text == "c5dca09c92a2f0362d00bde4edb7548b")
+                {
+                    bufferB = BT_WIFI.GetPatch_5(null);
+                    bufferC = BT_WIFI.GetOriginalValue5(directoryPath + @"\C0020001_extracted\C0020001.bin");
+                    if (Tool.CompareBytes(bufferB, bufferC) == true)
+                    {
+                        txtMd5.ForeColor = Color.Green;
+                        tbFWStatus.ForeColor = Color.Green;
+                        tbFWStatus.Text = "OK";
+                        button2.Enabled = false;
+                    }
+                    else
+                    {
+                        txtMd5.ForeColor = Color.Red;
+                        tbFWStatus.ForeColor = Color.Red;
+                        tbFWStatus.Text = "BAD";
+                        button2.Enabled = true;
+                    }
+                    tbActualMD5.Text = "c5dca09c92a2f0362d00bde4edb7548b";
+                    tbPatchType.Text = "Patch 5";
+                }
+                else if (fileSize.ToString() == "450796" && txtMd5.Text == "13c18569ca45e3732fb17d9c14160081")
+                {
+                    bufferB = BT_WIFI.GetPatch_6(null);
+                    bufferC = BT_WIFI.GetOriginalValue6(directoryPath + @"\C0020001_extracted\C0020001.bin");
+                    if (Tool.CompareBytes(bufferB, bufferC) == true)
+                    {
+                        txtMd5.ForeColor = Color.Green;
+                        tbFWStatus.ForeColor = Color.Green;
+                        tbFWStatus.Text = "OK";
+                        button2.Enabled = false;
+                    }
+                    else
+                    {
+                        txtMd5.ForeColor = Color.Red;
+                        tbFWStatus.ForeColor = Color.Red;
+                        tbFWStatus.Text = "BAD";
+                        button2.Enabled = true;
+                    }
+                    tbActualMD5.Text = "13c18569ca45e3732fb17d9c14160081";
+                    tbPatchType.Text = "Patch 6";
+                }
+                else if (fileSize.ToString() == "449960" || txtMd5.Text == "d51c9935b5409313041177fb0393550b")
+                {
+                    bufferB = BT_WIFI.GetPatch_7(null);
+                    bufferC = BT_WIFI.GetOriginalValue7(directoryPath + @"\C0020001_extracted\C0020001.bin");
+                    if (Tool.CompareBytes(bufferB, bufferC) == true)
+                    {
+                        txtMd5.ForeColor = Color.Green;
+                        tbFWStatus.ForeColor = Color.Green;
+                        tbFWStatus.Text = "OK";
+                        button2.Enabled = false;
+                    }
+                    else
+                    {
+                        tbFWStatus.ForeColor = Color.Red;
+                        txtMd5.ForeColor = Color.Red;
+                        tbFWStatus.Text = "BAD";
+                        button2.Enabled = true;
+                    }
+                    tbPatchType.Text = "Patch 7";
+                    tbActualMD5.Text = "d51c9935b5409313041177fb0393550b";
+                }
+                else if (fileSize.ToString() == "434871" && txtMd5.Text == "9efc56daf6c27ab00922baa38d49f8ab")
+                {
+                    bufferB = BT_WIFI.GetPatch_8(null);
+                    bufferC = BT_WIFI.GetOriginalValue8(directoryPath + @"\C0020001_extracted\C0020001.bin");
+                    if (Tool.CompareBytes(bufferB, bufferC) == true)
+                    {
+                        txtMd5.ForeColor = Color.Green;
+                        tbFWStatus.ForeColor = Color.Green;
+                        tbFWStatus.Text = "OK";
+                        button2.Enabled = false;
+                    }
+                    else
+                    {
+                        txtMd5.ForeColor = Color.Red;
+                        tbFWStatus.ForeColor = Color.Red;
+                        tbFWStatus.Text = "BAD";
+                        button2.Enabled = true;
+                    }
+                    tbPatchType.Text = "Patch 8";
+                    tbActualMD5.Text = "9efc56daf6c27ab00922baa38d49f8ab";
+                }
+                else if (fileSize.ToString() == "431614" && txtMd5.Text == "b658224645f34392019d21f1dee74889")
+                {
+                    bufferB = BT_WIFI.GetPatch_9(null);
+                    bufferC = BT_WIFI.GetOriginalValue9(directoryPath + @"\C0020001_extracted\C0020001.bin");
+                    if (Tool.CompareBytes(bufferB, bufferC) == true)
+                    {
+                        txtMd5.ForeColor = Color.Green;
+                        tbFWStatus.ForeColor = Color.Green;
+                        tbFWStatus.Text = "OK";
+                        button2.Enabled = false;
+                    }
+                    else
+                    {
+                        txtMd5.ForeColor = Color.Red;
+                        tbFWStatus.ForeColor = Color.Red;
+                        tbFWStatus.Text = "BAD";
+                        button2.Enabled = true;
+                    }
+                    tbActualMD5.Text = "b658224645f34392019d21f1dee74889";
+                    tbPatchType.Text = "Patch 9";
+                }
+                else if (fileSize.ToString() == "434685" && txtMd5.Text == "9976779772adfeddbf74b5a4f3047854")
+                {
+                    bufferB = BT_WIFI.GetPatch_10(null);
+                    bufferC = BT_WIFI.GetOriginalValue10(directoryPath + @"\C0020001_extracted\C0020001.bin");
+                    if (Tool.CompareBytes(bufferB, bufferC) == true)
+                    {
+                        txtMd5.ForeColor = Color.Green;
+                        tbFWStatus.ForeColor = Color.Green;
+                        tbFWStatus.Text = "OK";
+                        button2.Enabled = false;
+                    }
+                    else
+                    {
+                        txtMd5.ForeColor = Color.Red;
+                        tbFWStatus.ForeColor = Color.Red;
+                        tbFWStatus.Text = "BAD";
+                        button2.Enabled = true;
+                    }
+                    tbActualMD5.Text = "9976779772adfeddbf74b5a4f3047854";
+                    tbPatchType.Text = "Patch 10";
+                }
+                else if (fileSize.ToString() == "432158" && txtMd5.Text == "a601d993986c83d9db38c52a212d1c8b")
+                {
+                    bufferB = BT_WIFI.GetPatch_11(null);
+                    bufferC = BT_WIFI.GetOriginalValue11(directoryPath + @"\C0020001_extracted\C0020001.bin");
+                    if (Tool.CompareBytes(bufferB, bufferC) == true)
+                    {
+                        txtMd5.ForeColor = Color.Green;
+                        tbFWStatus.ForeColor = Color.Green;
+                        tbFWStatus.Text = "OK";
+                        button2.Enabled = false;
+                    }
+                    else
+                    {
+                        txtMd5.ForeColor = Color.Red;
+                        tbFWStatus.ForeColor = Color.Red;
+                        tbFWStatus.Text = "BAD";
+                        button2.Enabled = true;
+                    }
+                    tbActualMD5.Text = "a601d993986c83d9db38c52a212d1c8b";
+                    tbPatchType.Text = "Patch 11";
+                }
+                else if (fileSize.ToString() == "432033" && txtMd5.Text == "e77157f9c23dc6cbd8debfc24e32dd6d")
+                {
+                    bufferB = BT_WIFI.GetPatch_12(null);
+                    bufferC = BT_WIFI.GetOriginalValue12(directoryPath + @"\C0020001_extracted\C0020001.bin");
+                    if (Tool.CompareBytes(bufferB, bufferC) == true)
+                    {
+                        txtMd5.ForeColor = Color.Green;
+                        tbFWStatus.ForeColor = Color.Green;
+                        tbFWStatus.Text = "OK";
+                        button2.Enabled = false;
+                    }
+                    else
+                    {
+                        txtMd5.ForeColor = Color.Red;
+                        tbFWStatus.ForeColor = Color.Red;
+                        tbFWStatus.Text = "BAD";
+                        button2.Enabled = true;
+                    }
+                    tbActualMD5.Text = "e77157f9c23dc6cbd8debfc24e32dd6d";
+                    tbPatchType.Text = "Patch 12";
+                }
+                else if (fileSize.ToString() == "431685" && txtMd5.Text == "7aa816b366fce4adbec2b07b53e1482f")
+                {
+                    bufferB = BT_WIFI.GetPatch_13(null);
+                    bufferC = BT_WIFI.GetOriginalValue13(directoryPath + @"\C0020001_extracted\C0020001.bin");
+                    if (Tool.CompareBytes(bufferB, bufferC) == true)
+                    {
+                        txtMd5.ForeColor = Color.Green;
+                        tbFWStatus.ForeColor = Color.Green;
+                        tbFWStatus.Text = "OK";
+                        button2.Enabled = false;
+                    }
+                    else
+                    {
+                        txtMd5.ForeColor = Color.Red;
+                        tbFWStatus.ForeColor = Color.Red;
+                        tbFWStatus.Text = "BAD";
+                        button2.Enabled = true;
+                    }
+                    tbActualMD5.Text = "7aa816b366fce4adbec2b07b53e1482f";
+                    tbPatchType.Text = "Patch 13";
+                }
+                else
+                {
+                    tbFWStatus.ForeColor = Color.Red;
+                    tbFWStatus.Text = "BAD";
+                    button2.Enabled = false;
+                    tbPatchType.Text = "Could not detect BT_WIFI firmware";
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("Could not detect BT_WIFI firmware");
+                tbLoadDump.Text = "Select NOR dump";
+                tbFWStatus.Text = "";
+                tbPatchType.Text = "";
+                txtMd5.Text = "";
+                tbSize.Text = "";
+                tbActualMD5.Text = "";
+            }
+
+            /*
             bufferA = BT_WIFI.GetPatch(tbLoadDump.Text);
             if (Tool.CompareBytes(bufferA, Patch_1) == true && Tool.CompareBytes(bufferA, FF_16) == false)
             {
@@ -114,7 +426,6 @@ namespace PS4_BT_WIFI_PATCHER
                     tbFWStatus.Text = "BAD";
                     button2.Enabled = true;
                 }
-                tbSize.Text = "453,028 bytes";
                 tbPatchType.Text = "Patch 1";
             }
             else if (Tool.CompareBytes(bufferA, Patch_2) == true && Tool.CompareBytes(bufferA, FF_16) == false)
@@ -133,7 +444,6 @@ namespace PS4_BT_WIFI_PATCHER
                     tbFWStatus.Text = "BAD";
                     button2.Enabled = true;
                 }
-                tbSize.Text = "452,764 bytes";
                 tbPatchType.Text = "Patch 2";
             }
             else if (Tool.CompareBytes(bufferA, Patch_3) == true && Tool.CompareBytes(bufferA, FF_16) == false)
@@ -152,7 +462,6 @@ namespace PS4_BT_WIFI_PATCHER
                     tbFWStatus.Text = "BAD";
                     button2.Enabled = true;
                 }
-                tbSize.Text = "452,728 bytes";
                 tbPatchType.Text = "Patch 3";
             }
             else if (Tool.CompareBytes(bufferA, Patch_4) == true && Tool.CompareBytes(bufferA, FF_16) == false)
@@ -171,7 +480,6 @@ namespace PS4_BT_WIFI_PATCHER
                     tbFWStatus.Text = "BAD";
                     button2.Enabled = true;
                 }
-                tbSize.Text = "451,312 bytes";
                 tbPatchType.Text = "Patch 4";
             }
             else if (Tool.CompareBytes(bufferA, Patch_5) == true && Tool.CompareBytes(bufferA, FF_16) == false)
@@ -190,7 +498,6 @@ namespace PS4_BT_WIFI_PATCHER
                     tbFWStatus.Text = "BAD";
                     button2.Enabled = true;
                 }
-                tbSize.Text = "450,940 bytes";
                 tbPatchType.Text = "Patch 5";
             }
             else if (Tool.CompareBytes(bufferA, Patch_6) == true && Tool.CompareBytes(bufferA, FF_16) == false)
@@ -209,7 +516,6 @@ namespace PS4_BT_WIFI_PATCHER
                     tbFWStatus.Text = "BAD";
                     button2.Enabled = true;
                 }
-                tbSize.Text = "450,796 bytes";
                 tbPatchType.Text = "Patch 6";
             }
             else if (Tool.CompareBytes(bufferA, Patch_7) == true && Tool.CompareBytes(bufferA, FF_16) == false)
@@ -228,7 +534,6 @@ namespace PS4_BT_WIFI_PATCHER
                     tbFWStatus.Text = "BAD";
                     button2.Enabled = true;
                 }
-                tbSize.Text = "449,960 bytes";
                 tbPatchType.Text = "Patch 7";
             }
             else if (Tool.CompareBytes(bufferA, Patch_8) == true && Tool.CompareBytes(bufferA, FF_16) == false)
@@ -247,7 +552,6 @@ namespace PS4_BT_WIFI_PATCHER
                     tbFWStatus.Text = "BAD";
                     button2.Enabled = true;
                 }
-                tbSize.Text = "434,871 bytes";
                 tbPatchType.Text = "Patch 8";
             }
             else if (Tool.CompareBytes(bufferA, Patch_9) == true && Tool.CompareBytes(bufferA, FF_16) == false)
@@ -266,7 +570,6 @@ namespace PS4_BT_WIFI_PATCHER
                     tbFWStatus.Text = "BAD";
                     button2.Enabled = true;
                 }
-                tbSize.Text = "431,614 bytes";
                 tbPatchType.Text = "Patch 9";
             }
             else if (Tool.CompareBytes(bufferA, Patch_10) == true && Tool.CompareBytes(bufferA, FF_16) == false)
@@ -285,7 +588,6 @@ namespace PS4_BT_WIFI_PATCHER
                     tbFWStatus.Text = "BAD";
                     button2.Enabled = true;
                 }
-                tbSize.Text = "434,685 bytes";
                 tbPatchType.Text = "Patch 10";
             }
             else if (Tool.CompareBytes(bufferA, Patch_11) == true && Tool.CompareBytes(bufferA, FF_16) == false)
@@ -304,7 +606,6 @@ namespace PS4_BT_WIFI_PATCHER
                     tbFWStatus.Text = "BAD";
                     button2.Enabled = true;
                 }
-                tbSize.Text = "432,158 bytes";
                 tbPatchType.Text = "Patch 11";
             }
             else if (Tool.CompareBytes(bufferA, Patch_12) == true && Tool.CompareBytes(bufferA, FF_16) == false)
@@ -323,7 +624,6 @@ namespace PS4_BT_WIFI_PATCHER
                     tbFWStatus.Text = "BAD";
                     button2.Enabled = true;
                 }
-                tbSize.Text = "432,033 bytes";
                 tbPatchType.Text = "Patch 12";
             }
             else if (Tool.CompareBytes(bufferA, Patch_13) == true && Tool.CompareBytes(bufferA, FF_16) == false)
@@ -342,7 +642,6 @@ namespace PS4_BT_WIFI_PATCHER
                     tbFWStatus.Text = "BAD";
                     button2.Enabled = true;
                 }
-                tbSize.Text = "431,685 bytes";
                 tbPatchType.Text = "Patch 13";
             }
             else
@@ -351,7 +650,7 @@ namespace PS4_BT_WIFI_PATCHER
                 tbFWStatus.Text = "";
                 tbSize.Text = "";
                 tbPatchType.Text = "";
-            }
+            }*/
 
 
         }
@@ -386,17 +685,21 @@ namespace PS4_BT_WIFI_PATCHER
 
         private void Form1_Load(object sender, EventArgs e)
         {
+
+            
+
             string path = Environment.CurrentDirectory;
+
+            if (Directory.Exists(@"Patches"))
+            {
+                Directory.Delete(path + "\\Patches", true);
+            }
 
             Extract("PS4_BT_WIFI_PATCHER", path, "Resources", "Patches.zip");
             ZipFile.ExtractToDirectory(@"Patches.zip", path + "\\Patches");
             File.Delete("Patches.zip");
 
-            /*if (!Directory.Exists(@"Patches"))
-            {
-                MessageBox.Show("Please included 'Patches' folder!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                Application.Exit();
-            }*/
+            
         }
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
@@ -413,12 +716,19 @@ namespace PS4_BT_WIFI_PATCHER
                 bufferString = tbLoadDump.Text.Replace(" ", "");
                 if (BT_WIFI.CheckHeader(tbLoadDump.Text) == true)
                 {
+                    ExtractDump("o");
                     CheckTorusFirmware("o");
+
                 }
                 else
                 {
                     MessageBox.Show("Invalid file or corrupt flash dump.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     tbLoadDump.Text = "Select NOR dump";
+                    tbFWStatus.Text = "";
+                    tbPatchType.Text = "";
+                    txtMd5.Text = "";
+                    tbSize.Text = "";
+                    tbActualMD5.Text = "";
                 }
             }
         }
@@ -426,8 +736,8 @@ namespace PS4_BT_WIFI_PATCHER
         private void button2_Click(object sender, EventArgs e)
         {
             string path = Path.GetDirectoryName(tbLoadDump.Text);
-            MessageBox.Show("Patching start from 0x0144200\nPatch size : " + tbSize.Text, "Patching Firmware", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            if (File.Exists(tbLoadDump.Text + ".BAK"))
+            MessageBox.Show("Patching start from 0x0144200\n\nPatch size : " + tbSize.Text, "Patching Firmware", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if (!File.Exists(tbLoadDump.Text + ".BAK"))
             {
                 File.Copy(tbLoadDump.Text, Path.Combine(path, Path.GetFileName(tbLoadDump.Text + ".BAK")), true);
 
@@ -440,7 +750,121 @@ namespace PS4_BT_WIFI_PATCHER
 
             string name = new DirectoryInfo(tbLoadDump.Text).Name;
             MessageBox.Show("Patching done.\nOriginal dump backed up as '" + name + ".BAK'.", "Firmware patched", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            ExtractDump("o");
             CheckTorusFirmware("o");
         }
+
+        private void ExtractDump(string str)
+        {
+            if (str == "s")
+            {
+
+            }
+            else if (str == "o")
+            {
+                bufferString = tbLoadDump.Text;
+            }
+
+            string directoryPath = Environment.CurrentDirectory;
+
+            if (!Directory.Exists(directoryPath + @"\C0020001_extracted\") == true)
+            {
+                Directory.CreateDirectory(directoryPath + @"\C0020001_extracted\");
+
+                if (!Directory.Exists(directoryPath + @"\C0020001_extracted\") == true)
+                {
+                    MessageBox.Show("An error occur. Please try again.");
+                }
+                else
+                {
+                    flag = 3;
+                }
+            }
+            else if (Directory.Exists(directoryPath + @"\C0020001_extracted\"))
+            {
+                Directory.Delete(directoryPath + @"\C0020001_extracted\", true);
+
+                if (Directory.Exists(directoryPath + @"\C0020001_extracted\") == true)
+                {
+                    MessageBox.Show("An error occur. Please try again.");
+                }
+                else
+                {
+                    Directory.CreateDirectory(directoryPath + @"\C0020001_extracted\");
+
+                    if (!Directory.Exists(directoryPath + @"\C0020001_extracted\") == true)
+                    {
+                        MessageBox.Show("An error occur. Please try again.");
+                    }
+                    else
+                    {
+                        flag = 3;
+                    }
+                }
+            }
+
+            else
+            {
+            }
+
+            if (flag == 3)
+            {
+                int exception = 0;
+
+                try
+                {
+                    PS4Nor.ExtractDump(tbLoadDump.Text, directoryPath);
+                }
+                catch (Exception a)
+                {
+                    MessageBox.Show(a.ToString());
+                    exception = 1;
+                }
+                finally
+                {
+                    if (exception != 1)
+                    {
+                        path = tbLoadDump.Text;
+                        File.Delete(directoryPath + "\\C0020001_extracted\\C0000001_stage1.bin");
+                        File.Delete(directoryPath + "\\C0020001_extracted\\C0000001_stage2.bin");
+                        File.Delete(directoryPath + "\\C0020001_extracted\\C0008001_stage1.bin");
+                        File.Delete(directoryPath + "\\C0020001_extracted\\C0008001_stage2.bin");
+                        File.Delete(directoryPath + "\\C0020001_extracted\\C0010001.bin");
+                        File.Delete(directoryPath + "\\C0020001_extracted\\C0018001.bin");
+                        File.Delete(directoryPath + "\\C0020001_extracted\\C0028001.bin");
+                        File.Delete(directoryPath + "\\C0020001_extracted\\cid.bin");
+                        File.Delete(directoryPath + "\\C0020001_extracted\\CoreOS.bin");
+                        File.Delete(directoryPath + "\\C0020001_extracted\\eap_kbl.bin");
+                        File.Delete(directoryPath + "\\C0020001_extracted\\sceheader0.bin");
+                        File.Delete(directoryPath + "\\C0020001_extracted\\sceheader1.bin");
+                        File.Delete(directoryPath + "\\C0020001_extracted\\scevtrm0.bin");
+                        File.Delete(directoryPath + "\\C0020001_extracted\\scevtrm1.bin");
+                        File.Delete(directoryPath + "\\C0020001_extracted\\Unk.bin");
+                    }
+                }
+            }
+
+
+            
+
+        }
+
+        private MD5 md5 = MD5.Create();
+
+        private byte[] GetHashMD5(string filename)
+        {
+            using (FileStream stream = File.OpenRead(filename))
+            {
+                return md5.ComputeHash(stream);
+            }
+        }
+
+        public static string BytesToString(byte[] bytes)
+        {
+            string result = "";
+            foreach (byte b in bytes) result += b.ToString("x2");
+            return result;
+        }
+
     }
 }

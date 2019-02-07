@@ -216,11 +216,13 @@ namespace PS4_BT_WIFI_PATCHER
             }
         }
 
+        
+
         public static byte[] GetOriginalValue1(string dump)
         {
             using (BinaryReader b = new BinaryReader(new FileStream(dump, FileMode.Open)))
             {
-                b.BaseStream.Seek(0x0144200, SeekOrigin.Begin);
+                b.BaseStream.Seek(0, SeekOrigin.Begin);
                 b.Read(bufferValue_1, 0, 453028);
                 return bufferValue_1;
             }
@@ -230,7 +232,7 @@ namespace PS4_BT_WIFI_PATCHER
         {
             using (BinaryReader b = new BinaryReader(new FileStream(dump, FileMode.Open)))
             {
-                b.BaseStream.Seek(0x0144200, SeekOrigin.Begin);
+                b.BaseStream.Seek(0, SeekOrigin.Begin);
                 b.Read(bufferValue_2, 0, 452764);
                 return bufferValue_2;
             }
@@ -240,7 +242,7 @@ namespace PS4_BT_WIFI_PATCHER
         {
             using (BinaryReader b = new BinaryReader(new FileStream(dump, FileMode.Open)))
             {
-                b.BaseStream.Seek(0x0144200, SeekOrigin.Begin);
+                b.BaseStream.Seek(0, SeekOrigin.Begin);
                 b.Read(bufferValue_3, 0, 452728);
                 return bufferValue_3;
             }
@@ -250,7 +252,7 @@ namespace PS4_BT_WIFI_PATCHER
         {
             using (BinaryReader b = new BinaryReader(new FileStream(dump, FileMode.Open)))
             {
-                b.BaseStream.Seek(0x0144200, SeekOrigin.Begin);
+                b.BaseStream.Seek(0, SeekOrigin.Begin);
                 b.Read(bufferValue_4, 0, 451312);
                 return bufferValue_4;
             }
@@ -260,7 +262,7 @@ namespace PS4_BT_WIFI_PATCHER
         {
             using (BinaryReader b = new BinaryReader(new FileStream(dump, FileMode.Open)))
             {
-                b.BaseStream.Seek(0x0144200, SeekOrigin.Begin);
+                b.BaseStream.Seek(0, SeekOrigin.Begin);
                 b.Read(bufferValue_5, 0, 450940);
                 return bufferValue_5;
             }
@@ -270,7 +272,7 @@ namespace PS4_BT_WIFI_PATCHER
         {
             using (BinaryReader b = new BinaryReader(new FileStream(dump, FileMode.Open)))
             {
-                b.BaseStream.Seek(0x0144200, SeekOrigin.Begin);
+                b.BaseStream.Seek(0, SeekOrigin.Begin);
                 b.Read(bufferValue_6, 0, 450796);
                 return bufferValue_6;
             }
@@ -280,7 +282,7 @@ namespace PS4_BT_WIFI_PATCHER
         {
             using (BinaryReader b = new BinaryReader(new FileStream(dump, FileMode.Open)))
             {
-                b.BaseStream.Seek(0x0144200, SeekOrigin.Begin);
+                b.BaseStream.Seek(0, SeekOrigin.Begin);
                 b.Read(bufferValue_7, 0, 449960);
                 return bufferValue_7;
             }
@@ -290,7 +292,7 @@ namespace PS4_BT_WIFI_PATCHER
         {
             using (BinaryReader b = new BinaryReader(new FileStream(dump, FileMode.Open)))
             {
-                b.BaseStream.Seek(0x0144200, SeekOrigin.Begin);
+                b.BaseStream.Seek(0, SeekOrigin.Begin);
                 b.Read(bufferValue_8, 0, 434871);
                 return bufferValue_8;
             }
@@ -300,7 +302,7 @@ namespace PS4_BT_WIFI_PATCHER
         {
             using (BinaryReader b = new BinaryReader(new FileStream(dump, FileMode.Open)))
             {
-                b.BaseStream.Seek(0x0144200, SeekOrigin.Begin);
+                b.BaseStream.Seek(0, SeekOrigin.Begin);
                 b.Read(bufferValue_9, 0, 431614);
                 return bufferValue_9;
             }
@@ -310,7 +312,7 @@ namespace PS4_BT_WIFI_PATCHER
         {
             using (BinaryReader b = new BinaryReader(new FileStream(dump, FileMode.Open)))
             {
-                b.BaseStream.Seek(0x0144200, SeekOrigin.Begin);
+                b.BaseStream.Seek(0, SeekOrigin.Begin);
                 b.Read(bufferValue_10, 0, 434685);
                 return bufferValue_10;
             }
@@ -320,7 +322,7 @@ namespace PS4_BT_WIFI_PATCHER
         {
             using (BinaryReader b = new BinaryReader(new FileStream(dump, FileMode.Open)))
             {
-                b.BaseStream.Seek(0x0144200, SeekOrigin.Begin);
+                b.BaseStream.Seek(0, SeekOrigin.Begin);
                 b.Read(bufferValue_11, 0, 432158);
                 return bufferValue_11;
             }
@@ -330,7 +332,7 @@ namespace PS4_BT_WIFI_PATCHER
         {
             using (BinaryReader b = new BinaryReader(new FileStream(dump, FileMode.Open)))
             {
-                b.BaseStream.Seek(0x0144200, SeekOrigin.Begin);
+                b.BaseStream.Seek(0, SeekOrigin.Begin);
                 b.Read(bufferValue_12, 0, 432033);
                 return bufferValue_12;
             }
@@ -340,7 +342,7 @@ namespace PS4_BT_WIFI_PATCHER
         {
             using (BinaryReader b = new BinaryReader(new FileStream(dump, FileMode.Open)))
             {
-                b.BaseStream.Seek(0x0144200, SeekOrigin.Begin);
+                b.BaseStream.Seek(0, SeekOrigin.Begin);
                 b.Read(bufferValue_13, 0, 431685);
                 return bufferValue_13;
             }
