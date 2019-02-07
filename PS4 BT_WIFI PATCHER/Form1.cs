@@ -16,6 +16,7 @@ namespace PS4_BT_WIFI_PATCHER
 {
     public partial class Form1 : Form
     {
+        //not used
         #region patchMagic
         //using magic value at 0x144230 to identify firmware type
         static byte[] Patch_1 = new byte[16]
@@ -70,13 +71,12 @@ namespace PS4_BT_WIFI_PATCHER
         {
             0x32, 0x56, 0x57, 0xD0, 0x3E, 0x47, 0x57, 0xF5, 0x01, 0x14, 0x00, 0x84, 0xBD, 0x0B, 0x5C, 0x13,
         };
-        byte[] FF_16 = Enumerable.Repeat((byte)0xFF, 16).ToArray();
+        byte[] FF_16 =  Enumerable.Repeat((byte)0xFF, 16).ToArray();
 
-        #endregion patchMagic
+        #endregion patchMagic 
 
         static string bufferString, path;
-        byte[] dump;
-        static byte[] bufferA, bufferB, bufferC = new byte[0];
+        static byte[] bufferB, bufferC = new byte[0];
         static int flag = 0;
 
         public Form1()
@@ -84,6 +84,7 @@ namespace PS4_BT_WIFI_PATCHER
             InitializeComponent();
         }
 
+        //function to check torus firmware
         private void CheckTorusFirmware (string str)
         {
             tbActualMD5.ForeColor = Color.Black;
@@ -98,43 +99,50 @@ namespace PS4_BT_WIFI_PATCHER
                 bufferString = tbLoadDump.Text;
             }
 
-            //main process started
-            //get dump's torus firmware type
-            //compare with known patches
-            //enable patch button if firmware is invalid
-
+            //set path for current working dir
             string directoryPath = Environment.CurrentDirectory;
 
+            //if C0020001.bin extracted, check the firmware tally with which patches
             if (File.Exists(directoryPath + @"\C0020001_extracted\C0020001.bin"))
             {
+                //get the md5 hash of the extracted firmware
                 txtMd5.Text = BytesToString(GetHashMD5(directoryPath + @"\C0020001_extracted\C0020001.bin"));
 
+                //get the file size of the extracted firmware
                 FileInfo f = new FileInfo(directoryPath + @"\C0020001_extracted\C0020001.bin");
                 long fileSize = f.Length;
                 tbSize.Text = fileSize.ToString("###,###") + " Bytes";
-                string value = tbSize.Text;
 
+                //if the filesize OR md5 hash tally with patches, then verify the firmware wether o.k or k.o
+                //use "||" operator so if the firmware hash md5 is mismatch, use the filesize to identify patches
                 if (fileSize.ToString() == "453028" && txtMd5.Text == "42abb3b655f6085f029a408fe7e94831")
                 {
+                    //get hex value of identified patch 
                     bufferB = BT_WIFI.GetPatch_1(null);
+                    //get hex value of extracted firmware
                     bufferC = BT_WIFI.GetOriginalValue1(directoryPath + @"\C0020001_extracted\C0020001.bin");
-                    if (Tool.CompareBytes(bufferB, bufferC) == true)
+                    //compare both hex value of patch and firmware
+                    
+                    if (Tool.CompareBytes(bufferB, bufferC) == true) // if both hex value is equal, firmware is valid
                     {
+                        //show some info
                         txtMd5.ForeColor = Color.Green;
                         tbFWStatus.ForeColor = Color.Green;
                         tbFWStatus.Text = "OK";
                         button2.Enabled = false;
                     }
-                    else
+                    else //if both hex value is not equal, the firmware is not valid, enable patch button
                     {
                         txtMd5.ForeColor = Color.Red;
                         tbFWStatus.ForeColor = Color.Red;
                         tbFWStatus.Text = "BAD";
                         button2.Enabled = true;
                     }
+                    //show some info
                     tbActualMD5.Text = "42abb3b655f6085f029a408fe7e94831";
                     tbPatchType.Text = "Patch 1";
                 }
+                //the checks goes on...
                 else if (fileSize.ToString() == "452764" && txtMd5.Text == "92d4149f8c165abaf88a3ec93c491980")
                 {
 
@@ -388,7 +396,7 @@ namespace PS4_BT_WIFI_PATCHER
                     tbActualMD5.Text = "7aa816b366fce4adbec2b07b53e1482f";
                     tbPatchType.Text = "Patch 13";
                 }
-                else
+                else //if program could not detect the firmware
                 {
                     tbFWStatus.ForeColor = Color.Red;
                     tbFWStatus.Text = "BAD";
@@ -397,7 +405,7 @@ namespace PS4_BT_WIFI_PATCHER
                 }
 
             }
-            else
+            else //if no firmware extracted detected
             {
                 MessageBox.Show("Could not detect BT_WIFI firmware");
                 tbLoadDump.Text = "Select NOR dump";
@@ -408,7 +416,8 @@ namespace PS4_BT_WIFI_PATCHER
                 tbActualMD5.Text = "";
             }
 
-            /*
+            /* old code
+             
             bufferA = BT_WIFI.GetPatch(tbLoadDump.Text);
             if (Tool.CompareBytes(bufferA, Patch_1) == true && Tool.CompareBytes(bufferA, FF_16) == false)
             {
@@ -655,17 +664,22 @@ namespace PS4_BT_WIFI_PATCHER
 
         }
         
+        
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            //exit program tool strip
             Application.Exit();
         }
 
+        
         private void aboutPS4TORUSPATCHERToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            //open up about form
             About About = new About();
             About.ShowDialog();
         }
 
+        //method to extract embedded patches to the program
         private static void Extract(string nameSpace, string outDirectory, string internalFilePath, string resourceName)
         {
             Assembly assembly = Assembly.GetCallingAssembly();
@@ -678,49 +692,50 @@ namespace PS4_BT_WIFI_PATCHER
 
             using (BinaryWriter w = new BinaryWriter(fs))
 
-                w.Write(r.ReadBytes((int)s.Length));
+            w.Write(r.ReadBytes((int)s.Length));
 
         }
 
-
         private void Form1_Load(object sender, EventArgs e)
         {
-
-            
-
+            //once form loaded, check if patches folder exist. 
             string path = Environment.CurrentDirectory;
 
+            //delete if exist
             if (Directory.Exists(@"Patches"))
             {
                 Directory.Delete(path + "\\Patches", true);
             }
 
+            //once form loaded, extract the embedded patches
             Extract("PS4_BT_WIFI_PATCHER", path, "Resources", "Patches.zip");
             ZipFile.ExtractToDirectory(@"Patches.zip", path + "\\Patches");
             File.Delete("Patches.zip");
-
-            
         }
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
+            //when the program exist, delete patches dir
             string path = Environment.CurrentDirectory;
             Directory.Delete(path + "\\Patches", true);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            //select file
             if ( openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 tbLoadDump.Text = openFileDialog1.FileName;
                 bufferString = tbLoadDump.Text.Replace(" ", "");
+                //if file is valid ps4 dump
                 if (BT_WIFI.CheckHeader(tbLoadDump.Text) == true)
                 {
+                    //extract firmware
                     ExtractDump("o");
+                    //verify firmware
                     CheckTorusFirmware("o");
-
                 }
-                else
+                else//if file is not valid ps4 dump
                 {
                     MessageBox.Show("Invalid file or corrupt flash dump.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     tbLoadDump.Text = "Select NOR dump";
@@ -733,27 +748,34 @@ namespace PS4_BT_WIFI_PATCHER
             }
         }
 
+        //patch button
         private void button2_Click(object sender, EventArgs e)
         {
             string path = Path.GetDirectoryName(tbLoadDump.Text);
+            //messagebox
             MessageBox.Show("Patching start from 0x0144200\n\nPatch size : " + tbSize.Text, "Patching Firmware", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //if file not exist, create file
             if (!File.Exists(tbLoadDump.Text + ".BAK"))
             {
                 File.Copy(tbLoadDump.Text, Path.Combine(path, Path.GetFileName(tbLoadDump.Text + ".BAK")), true);
-
             }
            
+            //use binarywriter to patch the ps4 dump
             BinaryWriter bw = new BinaryWriter(File.OpenWrite(tbLoadDump.Text));
             bw.Seek(0x144200, SeekOrigin.Begin);
+            //bufferB is from BT_'WIFI.GetPatch_xx'
             bw.Write(bufferB);
             bw.Dispose();
 
             string name = new DirectoryInfo(tbLoadDump.Text).Name;
+            //messagebox
             MessageBox.Show("Patching done.\nOriginal dump backed up as '" + name + ".BAK'.", "Firmware patched", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //once patching done, repeat the step to check newly patched dump/firmware is valid
             ExtractDump("o");
             CheckTorusFirmware("o");
         }
 
+        //credit to cfwprophet for extracting dump method
         private void ExtractDump(string str)
         {
             if (str == "s")
@@ -824,7 +846,7 @@ namespace PS4_BT_WIFI_PATCHER
                 {
                     if (exception != 1)
                     {
-                        path = tbLoadDump.Text;
+                        //once extracted, delete other useless file. we only need 'C0020001.bin'
                         File.Delete(directoryPath + "\\C0020001_extracted\\C0000001_stage1.bin");
                         File.Delete(directoryPath + "\\C0020001_extracted\\C0000001_stage2.bin");
                         File.Delete(directoryPath + "\\C0020001_extracted\\C0008001_stage1.bin");
@@ -849,8 +871,10 @@ namespace PS4_BT_WIFI_PATCHER
 
         }
 
+        //md5 checking method
         private MD5 md5 = MD5.Create();
 
+        //md5 checking method
         private byte[] GetHashMD5(string filename)
         {
             using (FileStream stream = File.OpenRead(filename))
@@ -859,6 +883,7 @@ namespace PS4_BT_WIFI_PATCHER
             }
         }
 
+        //md5 checking method
         public static string BytesToString(byte[] bytes)
         {
             string result = "";
