@@ -115,7 +115,7 @@ namespace PS4_BT_WIFI_PATCHER
 
                 //if the filesize OR md5 hash tally with patches, then verify the firmware wether o.k or k.o
                 //use "||" operator so if the firmware hash md5 is mismatch, use the filesize to identify patches
-                if (fileSize.ToString() == "453028" && txtMd5.Text == "42abb3b655f6085f029a408fe7e94831")
+                if (fileSize.ToString() == "453028" || txtMd5.Text == "42abb3b655f6085f029a408fe7e94831")
                 {
                     //get hex value of identified patch 
                     bufferB = BT_WIFI.GetPatch_1(null);
@@ -143,7 +143,7 @@ namespace PS4_BT_WIFI_PATCHER
                     tbPatchType.Text = "Patch 1";
                 }
                 //the checks goes on...
-                else if (fileSize.ToString() == "452764" && txtMd5.Text == "92d4149f8c165abaf88a3ec93c491980")
+                else if (fileSize.ToString() == "452764" || txtMd5.Text == "92d4149f8c165abaf88a3ec93c491980")
                 {
 
                     bufferB = BT_WIFI.GetPatch_2(null);
@@ -165,7 +165,7 @@ namespace PS4_BT_WIFI_PATCHER
                     tbActualMD5.Text = "92d4149f8c165abaf88a3ec93c491980";
                     tbPatchType.Text = "Patch 2";
                 }
-                else if (fileSize.ToString() == "452728" && txtMd5.Text == "86aede5276e8948b2ca6eed320e72266")
+                else if (fileSize.ToString() == "452728" || txtMd5.Text == "86aede5276e8948b2ca6eed320e72266")
                 {
                     bufferB = BT_WIFI.GetPatch_3(null);
                     bufferC = BT_WIFI.GetOriginalValue3(directoryPath + @"\C0020001_extracted\C0020001.bin");
@@ -186,7 +186,7 @@ namespace PS4_BT_WIFI_PATCHER
                     tbActualMD5.Text = "86aede5276e8948b2ca6eed320e72266";
                     tbPatchType.Text = "Patch 3";
                 }
-                else if (fileSize.ToString() == "451312" && txtMd5.Text == "571a67c2d0f64ab8cf1a65c201f0c60d")
+                else if (fileSize.ToString() == "451312" || txtMd5.Text == "571a67c2d0f64ab8cf1a65c201f0c60d")
                 {
                     bufferB = BT_WIFI.GetPatch_4(null);
                     bufferC = BT_WIFI.GetOriginalValue4(directoryPath + @"\C0020001_extracted\C0020001.bin");
@@ -207,7 +207,7 @@ namespace PS4_BT_WIFI_PATCHER
                     tbActualMD5.Text = "571a67c2d0f64ab8cf1a65c201f0c60d";
                     tbPatchType.Text = "Patch 4";
                 }
-                else if (fileSize.ToString() == "450940" && txtMd5.Text == "c5dca09c92a2f0362d00bde4edb7548b")
+                else if (fileSize.ToString() == "450940" || txtMd5.Text == "c5dca09c92a2f0362d00bde4edb7548b")
                 {
                     bufferB = BT_WIFI.GetPatch_5(null);
                     bufferC = BT_WIFI.GetOriginalValue5(directoryPath + @"\C0020001_extracted\C0020001.bin");
@@ -228,7 +228,7 @@ namespace PS4_BT_WIFI_PATCHER
                     tbActualMD5.Text = "c5dca09c92a2f0362d00bde4edb7548b";
                     tbPatchType.Text = "Patch 5";
                 }
-                else if (fileSize.ToString() == "450796" && txtMd5.Text == "13c18569ca45e3732fb17d9c14160081")
+                else if (fileSize.ToString() == "450796" || txtMd5.Text == "13c18569ca45e3732fb17d9c14160081")
                 {
                     bufferB = BT_WIFI.GetPatch_6(null);
                     bufferC = BT_WIFI.GetOriginalValue6(directoryPath + @"\C0020001_extracted\C0020001.bin");
@@ -270,7 +270,7 @@ namespace PS4_BT_WIFI_PATCHER
                     tbPatchType.Text = "Patch 7";
                     tbActualMD5.Text = "d51c9935b5409313041177fb0393550b";
                 }
-                else if (fileSize.ToString() == "434871" && txtMd5.Text == "9efc56daf6c27ab00922baa38d49f8ab")
+                else if (fileSize.ToString() == "434871" || txtMd5.Text == "9efc56daf6c27ab00922baa38d49f8ab")
                 {
                     bufferB = BT_WIFI.GetPatch_8(null);
                     bufferC = BT_WIFI.GetOriginalValue8(directoryPath + @"\C0020001_extracted\C0020001.bin");
@@ -291,7 +291,7 @@ namespace PS4_BT_WIFI_PATCHER
                     tbPatchType.Text = "Patch 8";
                     tbActualMD5.Text = "9efc56daf6c27ab00922baa38d49f8ab";
                 }
-                else if (fileSize.ToString() == "431614" && txtMd5.Text == "b658224645f34392019d21f1dee74889")
+                else if (fileSize.ToString() == "431614" || txtMd5.Text == "b658224645f34392019d21f1dee74889")
                 {
                     bufferB = BT_WIFI.GetPatch_9(null);
                     bufferC = BT_WIFI.GetOriginalValue9(directoryPath + @"\C0020001_extracted\C0020001.bin");
@@ -312,7 +312,7 @@ namespace PS4_BT_WIFI_PATCHER
                     tbActualMD5.Text = "b658224645f34392019d21f1dee74889";
                     tbPatchType.Text = "Patch 9";
                 }
-                else if (fileSize.ToString() == "434685" && txtMd5.Text == "9976779772adfeddbf74b5a4f3047854")
+                else if (fileSize.ToString() == "434685" || txtMd5.Text == "9976779772adfeddbf74b5a4f3047854")
                 {
                     bufferB = BT_WIFI.GetPatch_10(null);
                     bufferC = BT_WIFI.GetOriginalValue10(directoryPath + @"\C0020001_extracted\C0020001.bin");
@@ -333,7 +333,7 @@ namespace PS4_BT_WIFI_PATCHER
                     tbActualMD5.Text = "9976779772adfeddbf74b5a4f3047854";
                     tbPatchType.Text = "Patch 10";
                 }
-                else if (fileSize.ToString() == "432158" && txtMd5.Text == "a601d993986c83d9db38c52a212d1c8b")
+                else if (fileSize.ToString() == "432158" || txtMd5.Text == "a601d993986c83d9db38c52a212d1c8b")
                 {
                     bufferB = BT_WIFI.GetPatch_11(null);
                     bufferC = BT_WIFI.GetOriginalValue11(directoryPath + @"\C0020001_extracted\C0020001.bin");
@@ -354,7 +354,7 @@ namespace PS4_BT_WIFI_PATCHER
                     tbActualMD5.Text = "a601d993986c83d9db38c52a212d1c8b";
                     tbPatchType.Text = "Patch 11";
                 }
-                else if (fileSize.ToString() == "432033" && txtMd5.Text == "e77157f9c23dc6cbd8debfc24e32dd6d")
+                else if (fileSize.ToString() == "432033" || txtMd5.Text == "e77157f9c23dc6cbd8debfc24e32dd6d")
                 {
                     bufferB = BT_WIFI.GetPatch_12(null);
                     bufferC = BT_WIFI.GetOriginalValue12(directoryPath + @"\C0020001_extracted\C0020001.bin");
@@ -375,7 +375,7 @@ namespace PS4_BT_WIFI_PATCHER
                     tbActualMD5.Text = "e77157f9c23dc6cbd8debfc24e32dd6d";
                     tbPatchType.Text = "Patch 12";
                 }
-                else if (fileSize.ToString() == "431685" && txtMd5.Text == "7aa816b366fce4adbec2b07b53e1482f")
+                else if (fileSize.ToString() == "431685" || txtMd5.Text == "7aa816b366fce4adbec2b07b53e1482f")
                 {
                     bufferB = BT_WIFI.GetPatch_13(null);
                     bufferC = BT_WIFI.GetOriginalValue13(directoryPath + @"\C0020001_extracted\C0020001.bin");
