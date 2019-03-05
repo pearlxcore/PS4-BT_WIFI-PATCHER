@@ -87,7 +87,7 @@ namespace PS4_BT_WIFI_PATCHER
         //function to check torus firmware
         private void CheckTorusFirmware (string str)
         {
-            tbActualMD5.ForeColor = Color.Black;
+            label9.ForeColor = Color.Black;
             
 
             if (str == "s")
@@ -106,16 +106,16 @@ namespace PS4_BT_WIFI_PATCHER
             if (File.Exists(directoryPath + @"\C0020001_extracted\C0020001.bin"))
             {
                 //get the md5 hash of the extracted firmware
-                txtMd5.Text = BytesToString(GetHashMD5(directoryPath + @"\C0020001_extracted\C0020001.bin"));
+                label8.Text = BytesToString(GetHashMD5(directoryPath + @"\C0020001_extracted\C0020001.bin")).ToUpper();
 
                 //get the file size of the extracted firmware
                 FileInfo f = new FileInfo(directoryPath + @"\C0020001_extracted\C0020001.bin");
                 long fileSize = f.Length;
-                tbSize.Text = fileSize.ToString("###,###") + " Bytes";
+                label7.Text = fileSize.ToString("###,###") + " Bytes";
 
                 //if the filesize OR md5 hash tally with patches, then verify the firmware wether o.k or k.o
                 //use "||" operator so if the firmware hash md5 is mismatch, use the filesize to identify patches
-                if (fileSize.ToString() == "453028" || txtMd5.Text == "42abb3b655f6085f029a408fe7e94831")
+                if (fileSize.ToString() == "453028" || label8.Text == "42abb3b655f6085f029a408fe7e94831")
                 {
                     //get hex value of identified patch 
                     bufferB = BT_WIFI.GetPatch_1(null);
@@ -126,294 +126,295 @@ namespace PS4_BT_WIFI_PATCHER
                     if (Tool.CompareBytes(bufferB, bufferC) == true) // if both hex value is equal, firmware is valid
                     {
                         //show some info
-                        txtMd5.ForeColor = Color.Green;
-                        tbFWStatus.ForeColor = Color.Green;
-                        tbFWStatus.Text = "OK";
+                        label8.ForeColor = Color.Green;
+                        label10.ForeColor = Color.Green;
+                        label10.Text = "OK";
                         button2.Enabled = false;
                     }
                     else //if both hex value is not equal, the firmware is not valid, enable patch button
                     {
-                        txtMd5.ForeColor = Color.Red;
-                        tbFWStatus.ForeColor = Color.Red;
-                        tbFWStatus.Text = "BAD";
+                        label8.ForeColor = Color.Red;
+                        label10.ForeColor = Color.Red;
+                        label10.Text = "BAD";
                         button2.Enabled = true;
                     }
                     //show some info
-                    tbActualMD5.Text = "42abb3b655f6085f029a408fe7e94831";
-                    tbPatchType.Text = "Patch 1";
+                    label9.Text = "42abb3b655f6085f029a408fe7e94831".ToUpper();
+                    label6.Text = "Patch 1";
                 }
                 //the checks goes on...
-                else if (fileSize.ToString() == "452764" || txtMd5.Text == "92d4149f8c165abaf88a3ec93c491980")
+                else if (fileSize.ToString() == "452764" || label8.Text == "92d4149f8c165abaf88a3ec93c491980")
                 {
 
                     bufferB = BT_WIFI.GetPatch_2(null);
                     bufferC = BT_WIFI.GetOriginalValue2(directoryPath + @"\C0020001_extracted\C0020001.bin");
                     if (Tool.CompareBytes(bufferB, bufferC) == true)
                     {
-                        txtMd5.ForeColor = Color.Green;
-                        tbFWStatus.ForeColor = Color.Green;
-                        tbFWStatus.Text = "OK";
+                        label8.ForeColor = Color.Green;
+                        label10.ForeColor = Color.Green;
+                        label10.Text = "OK";
                         button2.Enabled = false;
                     }
                     else
                     {
-                        txtMd5.ForeColor = Color.Red;
-                        tbFWStatus.ForeColor = Color.Red;
-                        tbFWStatus.Text = "BAD";
+                        label8.ForeColor = Color.Red;
+                        label10.ForeColor = Color.Red;
+                        label10.Text = "BAD";
                         button2.Enabled = true;
                     }
-                    tbActualMD5.Text = "92d4149f8c165abaf88a3ec93c491980";
-                    tbPatchType.Text = "Patch 2";
+                    label9.Text = "92d4149f8c165abaf88a3ec93c491980".ToUpper();
+                    label6.Text = "Patch 2";
                 }
-                else if (fileSize.ToString() == "452728" || txtMd5.Text == "86aede5276e8948b2ca6eed320e72266")
+                else if (fileSize.ToString() == "452728" || label8.Text == "86aede5276e8948b2ca6eed320e72266")
                 {
                     bufferB = BT_WIFI.GetPatch_3(null);
                     bufferC = BT_WIFI.GetOriginalValue3(directoryPath + @"\C0020001_extracted\C0020001.bin");
                     if (Tool.CompareBytes(bufferB, bufferC) == true)
                     {
-                        txtMd5.ForeColor = Color.Green;
-                        tbFWStatus.ForeColor = Color.Green;
-                        tbFWStatus.Text = "OK";
+                        label8.ForeColor = Color.Green;
+                        label10.ForeColor = Color.Green;
+                        label10.Text = "OK";
                         button2.Enabled = false;
                     }
                     else
                     {
-                        txtMd5.ForeColor = Color.Red;
-                        tbFWStatus.ForeColor = Color.Red;
-                        tbFWStatus.Text = "BAD";
+                        label8.ForeColor = Color.Red;
+                        label10.ForeColor = Color.Red;
+                        label10.Text = "BAD";
                         button2.Enabled = true;
                     }
-                    tbActualMD5.Text = "86aede5276e8948b2ca6eed320e72266";
-                    tbPatchType.Text = "Patch 3";
+                    label9.Text = "86aede5276e8948b2ca6eed320e72266".ToUpper();
+                    label6.Text = "Patch 3";
                 }
-                else if (fileSize.ToString() == "451312" || txtMd5.Text == "571a67c2d0f64ab8cf1a65c201f0c60d")
+                else if (fileSize.ToString() == "451312" || label8.Text == "571a67c2d0f64ab8cf1a65c201f0c60d")
                 {
                     bufferB = BT_WIFI.GetPatch_4(null);
                     bufferC = BT_WIFI.GetOriginalValue4(directoryPath + @"\C0020001_extracted\C0020001.bin");
                     if (Tool.CompareBytes(bufferB, bufferC) == true)
                     {
-                        txtMd5.ForeColor = Color.Green;
-                        tbFWStatus.ForeColor = Color.Green;
-                        tbFWStatus.Text = "OK";
+                        label8.ForeColor = Color.Green;
+                        label10.ForeColor = Color.Green;
+                        label10.Text = "OK";
                         button2.Enabled = false;
                     }
                     else
                     {
-                        txtMd5.ForeColor = Color.Red;
-                        tbFWStatus.ForeColor = Color.Red;
-                        tbFWStatus.Text = "BAD";
+                        label8.ForeColor = Color.Red;
+                        label10.ForeColor = Color.Red;
+                        label10.Text = "BAD";
                         button2.Enabled = true;
                     }
-                    tbActualMD5.Text = "571a67c2d0f64ab8cf1a65c201f0c60d";
-                    tbPatchType.Text = "Patch 4";
+                    label9.Text = "571a67c2d0f64ab8cf1a65c201f0c60d".ToUpper();
+                    label6.Text = "Patch 4";
                 }
-                else if (fileSize.ToString() == "450940" || txtMd5.Text == "c5dca09c92a2f0362d00bde4edb7548b")
+                else if (fileSize.ToString() == "450940" || label8.Text == "c5dca09c92a2f0362d00bde4edb7548b")
                 {
                     bufferB = BT_WIFI.GetPatch_5(null);
                     bufferC = BT_WIFI.GetOriginalValue5(directoryPath + @"\C0020001_extracted\C0020001.bin");
                     if (Tool.CompareBytes(bufferB, bufferC) == true)
                     {
-                        txtMd5.ForeColor = Color.Green;
-                        tbFWStatus.ForeColor = Color.Green;
-                        tbFWStatus.Text = "OK";
+                        label8.ForeColor = Color.Green;
+                        label10.ForeColor = Color.Green;
+                        label10.Text = "OK";
                         button2.Enabled = false;
                     }
                     else
                     {
-                        txtMd5.ForeColor = Color.Red;
-                        tbFWStatus.ForeColor = Color.Red;
-                        tbFWStatus.Text = "BAD";
+                        label8.ForeColor = Color.Red;
+                        label10.ForeColor = Color.Red;
+                        label10.Text = "BAD";
                         button2.Enabled = true;
                     }
-                    tbActualMD5.Text = "c5dca09c92a2f0362d00bde4edb7548b";
-                    tbPatchType.Text = "Patch 5";
+                    label9.Text = "c5dca09c92a2f0362d00bde4edb7548b".ToUpper();
+                    label6.Text = "Patch 5";
                 }
-                else if (fileSize.ToString() == "450796" || txtMd5.Text == "13c18569ca45e3732fb17d9c14160081")
+                else if (fileSize.ToString() == "450796" || label8.Text == "13c18569ca45e3732fb17d9c14160081")
                 {
                     bufferB = BT_WIFI.GetPatch_6(null);
                     bufferC = BT_WIFI.GetOriginalValue6(directoryPath + @"\C0020001_extracted\C0020001.bin");
                     if (Tool.CompareBytes(bufferB, bufferC) == true)
                     {
-                        txtMd5.ForeColor = Color.Green;
-                        tbFWStatus.ForeColor = Color.Green;
-                        tbFWStatus.Text = "OK";
+                        label8.ForeColor = Color.Green;
+                        label10.ForeColor = Color.Green;
+                        label10.Text = "OK";
                         button2.Enabled = false;
                     }
                     else
                     {
-                        txtMd5.ForeColor = Color.Red;
-                        tbFWStatus.ForeColor = Color.Red;
-                        tbFWStatus.Text = "BAD";
+                        label8.ForeColor = Color.Red;
+                        label10.ForeColor = Color.Red;
+                        label10.Text = "BAD";
                         button2.Enabled = true;
                     }
-                    tbActualMD5.Text = "13c18569ca45e3732fb17d9c14160081";
-                    tbPatchType.Text = "Patch 6";
+                    label9.Text = "13c18569ca45e3732fb17d9c14160081".ToUpper();
+                    label6.Text = "Patch 6";
                 }
-                else if (fileSize.ToString() == "449960" || txtMd5.Text == "d51c9935b5409313041177fb0393550b")
+                else if (fileSize.ToString() == "449960" || label8.Text == "d51c9935b5409313041177fb0393550b")
                 {
                     bufferB = BT_WIFI.GetPatch_7(null);
                     bufferC = BT_WIFI.GetOriginalValue7(directoryPath + @"\C0020001_extracted\C0020001.bin");
                     if (Tool.CompareBytes(bufferB, bufferC) == true)
                     {
-                        txtMd5.ForeColor = Color.Green;
-                        tbFWStatus.ForeColor = Color.Green;
-                        tbFWStatus.Text = "OK";
+                        label8.ForeColor = Color.Green;
+                        label10.ForeColor = Color.Green;
+                        label10.Text = "OK";
                         button2.Enabled = false;
                     }
                     else
                     {
-                        tbFWStatus.ForeColor = Color.Red;
-                        txtMd5.ForeColor = Color.Red;
-                        tbFWStatus.Text = "BAD";
+                        label10.ForeColor = Color.Red;
+                        label8.ForeColor = Color.Red;
+                        label10.Text = "BAD";
                         button2.Enabled = true;
                     }
-                    tbPatchType.Text = "Patch 7";
-                    tbActualMD5.Text = "d51c9935b5409313041177fb0393550b";
+                    label6.Text = "Patch 7";
+                    label9.Text = "d51c9935b5409313041177fb0393550b".ToUpper();
                 }
-                else if (fileSize.ToString() == "434871" || txtMd5.Text == "9efc56daf6c27ab00922baa38d49f8ab")
+                else if (fileSize.ToString() == "434871" || label8.Text == "9efc56daf6c27ab00922baa38d49f8ab")
                 {
                     bufferB = BT_WIFI.GetPatch_8(null);
                     bufferC = BT_WIFI.GetOriginalValue8(directoryPath + @"\C0020001_extracted\C0020001.bin");
                     if (Tool.CompareBytes(bufferB, bufferC) == true)
                     {
-                        txtMd5.ForeColor = Color.Green;
-                        tbFWStatus.ForeColor = Color.Green;
-                        tbFWStatus.Text = "OK";
+                        label8.ForeColor = Color.Green;
+                        label10.ForeColor = Color.Green;
+                        label10.Text = "OK";
                         button2.Enabled = false;
                     }
                     else
                     {
-                        txtMd5.ForeColor = Color.Red;
-                        tbFWStatus.ForeColor = Color.Red;
-                        tbFWStatus.Text = "BAD";
+                        label8.ForeColor = Color.Red;
+                        label10.ForeColor = Color.Red;
+                        label10.Text = "BAD";
                         button2.Enabled = true;
                     }
-                    tbPatchType.Text = "Patch 8";
-                    tbActualMD5.Text = "9efc56daf6c27ab00922baa38d49f8ab";
+                    label6.Text = "Patch 8";
+                    label9.Text = "9efc56daf6c27ab00922baa38d49f8ab".ToUpper();
                 }
-                else if (fileSize.ToString() == "431614" || txtMd5.Text == "b658224645f34392019d21f1dee74889")
+                else if (fileSize.ToString() == "431614" || label8.Text == "b658224645f34392019d21f1dee74889")
                 {
                     bufferB = BT_WIFI.GetPatch_9(null);
                     bufferC = BT_WIFI.GetOriginalValue9(directoryPath + @"\C0020001_extracted\C0020001.bin");
                     if (Tool.CompareBytes(bufferB, bufferC) == true)
                     {
-                        txtMd5.ForeColor = Color.Green;
-                        tbFWStatus.ForeColor = Color.Green;
-                        tbFWStatus.Text = "OK";
+                        label8.ForeColor = Color.Green;
+                        label10.ForeColor = Color.Green;
+                        label10.Text = "OK";
                         button2.Enabled = false;
                     }
                     else
                     {
-                        txtMd5.ForeColor = Color.Red;
-                        tbFWStatus.ForeColor = Color.Red;
-                        tbFWStatus.Text = "BAD";
+                        label8.ForeColor = Color.Red;
+                        label10.ForeColor = Color.Red;
+                        label10.Text = "BAD";
                         button2.Enabled = true;
                     }
-                    tbActualMD5.Text = "b658224645f34392019d21f1dee74889";
-                    tbPatchType.Text = "Patch 9";
+                    label9.Text = "b658224645f34392019d21f1dee74889".ToUpper();
+                    label6.Text = "Patch 9";
                 }
-                else if (fileSize.ToString() == "434685" || txtMd5.Text == "9976779772adfeddbf74b5a4f3047854")
+                else if (fileSize.ToString() == "434685" || label8.Text == "9976779772adfeddbf74b5a4f3047854")
                 {
                     bufferB = BT_WIFI.GetPatch_10(null);
                     bufferC = BT_WIFI.GetOriginalValue10(directoryPath + @"\C0020001_extracted\C0020001.bin");
                     if (Tool.CompareBytes(bufferB, bufferC) == true)
                     {
-                        txtMd5.ForeColor = Color.Green;
-                        tbFWStatus.ForeColor = Color.Green;
-                        tbFWStatus.Text = "OK";
+                        label8.ForeColor = Color.Green;
+                        label10.ForeColor = Color.Green;
+                        label10.Text = "OK";
                         button2.Enabled = false;
                     }
                     else
                     {
-                        txtMd5.ForeColor = Color.Red;
-                        tbFWStatus.ForeColor = Color.Red;
-                        tbFWStatus.Text = "BAD";
+                        label8.ForeColor = Color.Red;
+                        label10.ForeColor = Color.Red;
+                        label10.Text = "BAD";
                         button2.Enabled = true;
                     }
-                    tbActualMD5.Text = "9976779772adfeddbf74b5a4f3047854";
-                    tbPatchType.Text = "Patch 10";
+                    label9.Text = "9976779772adfeddbf74b5a4f3047854".ToUpper();
+                    label6.Text = "Patch 10";
                 }
-                else if (fileSize.ToString() == "432158" || txtMd5.Text == "a601d993986c83d9db38c52a212d1c8b")
+                else if (fileSize.ToString() == "432158" || label8.Text == "a601d993986c83d9db38c52a212d1c8b")
                 {
                     bufferB = BT_WIFI.GetPatch_11(null);
                     bufferC = BT_WIFI.GetOriginalValue11(directoryPath + @"\C0020001_extracted\C0020001.bin");
                     if (Tool.CompareBytes(bufferB, bufferC) == true)
                     {
-                        txtMd5.ForeColor = Color.Green;
-                        tbFWStatus.ForeColor = Color.Green;
-                        tbFWStatus.Text = "OK";
+                        label8.ForeColor = Color.Green;
+                        label10.ForeColor = Color.Green;
+                        label10.Text = "OK";
                         button2.Enabled = false;
                     }
                     else
                     {
-                        txtMd5.ForeColor = Color.Red;
-                        tbFWStatus.ForeColor = Color.Red;
-                        tbFWStatus.Text = "BAD";
+                        label8.ForeColor = Color.Red;
+                        label10.ForeColor = Color.Red;
+                        label10.Text = "BAD";
                         button2.Enabled = true;
                     }
-                    tbActualMD5.Text = "a601d993986c83d9db38c52a212d1c8b";
-                    tbPatchType.Text = "Patch 11";
+                    label9.Text = "a601d993986c83d9db38c52a212d1c8b".ToUpper();
+                    label6.Text = "Patch 11";
                 }
-                else if (fileSize.ToString() == "432033" || txtMd5.Text == "e77157f9c23dc6cbd8debfc24e32dd6d")
+                else if (fileSize.ToString() == "432033" || label8.Text == "e77157f9c23dc6cbd8debfc24e32dd6d")
                 {
                     bufferB = BT_WIFI.GetPatch_12(null);
                     bufferC = BT_WIFI.GetOriginalValue12(directoryPath + @"\C0020001_extracted\C0020001.bin");
                     if (Tool.CompareBytes(bufferB, bufferC) == true)
                     {
-                        txtMd5.ForeColor = Color.Green;
-                        tbFWStatus.ForeColor = Color.Green;
-                        tbFWStatus.Text = "OK";
+                        label8.ForeColor = Color.Green;
+                        label10.ForeColor = Color.Green;
+                        label10.Text = "OK";
                         button2.Enabled = false;
                     }
                     else
                     {
-                        txtMd5.ForeColor = Color.Red;
-                        tbFWStatus.ForeColor = Color.Red;
-                        tbFWStatus.Text = "BAD";
+                        label8.ForeColor = Color.Red;
+                        label10.ForeColor = Color.Red;
+                        label10.Text = "BAD";
                         button2.Enabled = true;
                     }
-                    tbActualMD5.Text = "e77157f9c23dc6cbd8debfc24e32dd6d";
-                    tbPatchType.Text = "Patch 12";
+                    label9.Text = "e77157f9c23dc6cbd8debfc24e32dd6d".ToUpper();
+                    label6.Text = "Patch 12";
                 }
-                else if (fileSize.ToString() == "431685" || txtMd5.Text == "7aa816b366fce4adbec2b07b53e1482f")
+                else if (fileSize.ToString() == "431685" || label8.Text == "7aa816b366fce4adbec2b07b53e1482f")
                 {
                     bufferB = BT_WIFI.GetPatch_13(null);
                     bufferC = BT_WIFI.GetOriginalValue13(directoryPath + @"\C0020001_extracted\C0020001.bin");
                     if (Tool.CompareBytes(bufferB, bufferC) == true)
                     {
-                        txtMd5.ForeColor = Color.Green;
-                        tbFWStatus.ForeColor = Color.Green;
-                        tbFWStatus.Text = "OK";
+                        label8.ForeColor = Color.Green;
+                        label10.ForeColor = Color.Green;
+                        label10.Text = "OK";
                         button2.Enabled = false;
                     }
                     else
                     {
-                        txtMd5.ForeColor = Color.Red;
-                        tbFWStatus.ForeColor = Color.Red;
-                        tbFWStatus.Text = "BAD";
+                        label8.ForeColor = Color.Red;
+                        label10.ForeColor = Color.Red;
+                        label10.Text = "BAD";
                         button2.Enabled = true;
                     }
-                    tbActualMD5.Text = "7aa816b366fce4adbec2b07b53e1482f";
-                    tbPatchType.Text = "Patch 13";
+                    label9.Text = "7aa816b366fce4adbec2b07b53e1482f".ToUpper();
+                    label6.Text = "Patch 13";
                 }
                 else //if program could not detect the firmware
                 {
-                    tbFWStatus.ForeColor = Color.Red;
-                    tbFWStatus.Text = "BAD";
+                    label10.Text = "N/A";
                     button2.Enabled = false;
-                    tbPatchType.Text = "Could not detect BT_WIFI firmware";
+                    label6.ForeColor = Color.Red;
+                    label6.Text = "Could not detect BT_WIFI firmware";
+                    label9.Text = "N/A";
                 }
 
             }
             else //if no firmware extracted detected
             {
-                MessageBox.Show("Could not detect BT_WIFI firmware");
+                MessageBox.Show("Could not detect firmware");
                 tbLoadDump.Text = "Select NOR dump";
-                tbFWStatus.Text = "";
-                tbPatchType.Text = "";
-                txtMd5.Text = "";
-                tbSize.Text = "";
-                tbActualMD5.Text = "";
+                label10.Text = "";
+                label6.Text = "";
+                label8.Text = "";
+                label7.Text = "";
+                label9.Text = "";
             }
 
             /* old code
@@ -425,17 +426,17 @@ namespace PS4_BT_WIFI_PATCHER
                 bufferC = BT_WIFI.GetOriginalValue1(tbLoadDump.Text);
                 if (Tool.CompareBytes (bufferB, bufferC) == true)
                 {
-                    tbFWStatus.ForeColor = Color.Green;
-                    tbFWStatus.Text = "OK";
+                    label10.ForeColor = Color.Green;
+                    label10.Text = "OK";
                     button2.Enabled = false;
                 }
                 else
                 {
-                    tbFWStatus.ForeColor = Color.Red;
-                    tbFWStatus.Text = "BAD";
+                    label10.ForeColor = Color.Red;
+                    label10.Text = "BAD";
                     button2.Enabled = true;
                 }
-                tbPatchType.Text = "Patch 1";
+                label6.Text = "Patch 1";
             }
             else if (Tool.CompareBytes(bufferA, Patch_2) == true && Tool.CompareBytes(bufferA, FF_16) == false)
             {
@@ -443,17 +444,17 @@ namespace PS4_BT_WIFI_PATCHER
                 bufferC = BT_WIFI.GetOriginalValue2(tbLoadDump.Text);
                 if (Tool.CompareBytes(bufferB, bufferC) == true)
                 {
-                    tbFWStatus.ForeColor = Color.Green;
-                    tbFWStatus.Text = "OK";
+                    label10.ForeColor = Color.Green;
+                    label10.Text = "OK";
                     button2.Enabled = false;
                 }
                 else
                 {
-                    tbFWStatus.ForeColor = Color.Red;
-                    tbFWStatus.Text = "BAD";
+                    label10.ForeColor = Color.Red;
+                    label10.Text = "BAD";
                     button2.Enabled = true;
                 }
-                tbPatchType.Text = "Patch 2";
+                label6.Text = "Patch 2";
             }
             else if (Tool.CompareBytes(bufferA, Patch_3) == true && Tool.CompareBytes(bufferA, FF_16) == false)
             {
@@ -461,17 +462,17 @@ namespace PS4_BT_WIFI_PATCHER
                 bufferC = BT_WIFI.GetOriginalValue3(tbLoadDump.Text);
                 if (Tool.CompareBytes(bufferB, bufferC) == true)
                 {
-                    tbFWStatus.ForeColor = Color.Green;
-                    tbFWStatus.Text = "OK";
+                    label10.ForeColor = Color.Green;
+                    label10.Text = "OK";
                     button2.Enabled = false;
                 }
                 else
                 {
-                    tbFWStatus.ForeColor = Color.Red;
-                    tbFWStatus.Text = "BAD";
+                    label10.ForeColor = Color.Red;
+                    label10.Text = "BAD";
                     button2.Enabled = true;
                 }
-                tbPatchType.Text = "Patch 3";
+                label6.Text = "Patch 3";
             }
             else if (Tool.CompareBytes(bufferA, Patch_4) == true && Tool.CompareBytes(bufferA, FF_16) == false)
             {
@@ -479,17 +480,17 @@ namespace PS4_BT_WIFI_PATCHER
                 bufferC = BT_WIFI.GetOriginalValue4(tbLoadDump.Text);
                 if (Tool.CompareBytes(bufferB, bufferC) == true)
                 {
-                    tbFWStatus.ForeColor = Color.Green;
-                    tbFWStatus.Text = "OK";
+                    label10.ForeColor = Color.Green;
+                    label10.Text = "OK";
                     button2.Enabled = false;
                 }
                 else
                 {
-                    tbFWStatus.ForeColor = Color.Red;
-                    tbFWStatus.Text = "BAD";
+                    label10.ForeColor = Color.Red;
+                    label10.Text = "BAD";
                     button2.Enabled = true;
                 }
-                tbPatchType.Text = "Patch 4";
+                label6.Text = "Patch 4";
             }
             else if (Tool.CompareBytes(bufferA, Patch_5) == true && Tool.CompareBytes(bufferA, FF_16) == false)
             {
@@ -497,17 +498,17 @@ namespace PS4_BT_WIFI_PATCHER
                 bufferC = BT_WIFI.GetOriginalValue5(tbLoadDump.Text);
                 if (Tool.CompareBytes(bufferB, bufferC) == true)
                 {
-                    tbFWStatus.ForeColor = Color.Green;
-                    tbFWStatus.Text = "OK";
+                    label10.ForeColor = Color.Green;
+                    label10.Text = "OK";
                     button2.Enabled = false;
                 }
                 else
                 {
-                    tbFWStatus.ForeColor = Color.Red;
-                    tbFWStatus.Text = "BAD";
+                    label10.ForeColor = Color.Red;
+                    label10.Text = "BAD";
                     button2.Enabled = true;
                 }
-                tbPatchType.Text = "Patch 5";
+                label6.Text = "Patch 5";
             }
             else if (Tool.CompareBytes(bufferA, Patch_6) == true && Tool.CompareBytes(bufferA, FF_16) == false)
             {
@@ -515,17 +516,17 @@ namespace PS4_BT_WIFI_PATCHER
                 bufferC = BT_WIFI.GetOriginalValue6(tbLoadDump.Text);
                 if (Tool.CompareBytes(bufferB, bufferC) == true)
                 {
-                    tbFWStatus.ForeColor = Color.Green;
-                    tbFWStatus.Text = "OK";
+                    label10.ForeColor = Color.Green;
+                    label10.Text = "OK";
                     button2.Enabled = false;
                 }
                 else
                 {
-                    tbFWStatus.ForeColor = Color.Red;
-                    tbFWStatus.Text = "BAD";
+                    label10.ForeColor = Color.Red;
+                    label10.Text = "BAD";
                     button2.Enabled = true;
                 }
-                tbPatchType.Text = "Patch 6";
+                label6.Text = "Patch 6";
             }
             else if (Tool.CompareBytes(bufferA, Patch_7) == true && Tool.CompareBytes(bufferA, FF_16) == false)
             {
@@ -533,17 +534,17 @@ namespace PS4_BT_WIFI_PATCHER
                 bufferC = BT_WIFI.GetOriginalValue7(tbLoadDump.Text);
                 if (Tool.CompareBytes(bufferB, bufferC) == true)
                 {
-                    tbFWStatus.ForeColor = Color.Green;
-                    tbFWStatus.Text = "OK";
+                    label10.ForeColor = Color.Green;
+                    label10.Text = "OK";
                     button2.Enabled = false;
                 }
                 else
                 {
-                    tbFWStatus.ForeColor = Color.Red;
-                    tbFWStatus.Text = "BAD";
+                    label10.ForeColor = Color.Red;
+                    label10.Text = "BAD";
                     button2.Enabled = true;
                 }
-                tbPatchType.Text = "Patch 7";
+                label6.Text = "Patch 7";
             }
             else if (Tool.CompareBytes(bufferA, Patch_8) == true && Tool.CompareBytes(bufferA, FF_16) == false)
             {
@@ -551,17 +552,17 @@ namespace PS4_BT_WIFI_PATCHER
                 bufferC = BT_WIFI.GetOriginalValue8(tbLoadDump.Text);
                 if (Tool.CompareBytes(bufferB, bufferC) == true)
                 {
-                    tbFWStatus.ForeColor = Color.Green;
-                    tbFWStatus.Text = "OK";
+                    label10.ForeColor = Color.Green;
+                    label10.Text = "OK";
                     button2.Enabled = false;
                 }
                 else
                 {
-                    tbFWStatus.ForeColor = Color.Red;
-                    tbFWStatus.Text = "BAD";
+                    label10.ForeColor = Color.Red;
+                    label10.Text = "BAD";
                     button2.Enabled = true;
                 }
-                tbPatchType.Text = "Patch 8";
+                label6.Text = "Patch 8";
             }
             else if (Tool.CompareBytes(bufferA, Patch_9) == true && Tool.CompareBytes(bufferA, FF_16) == false)
             {
@@ -569,17 +570,17 @@ namespace PS4_BT_WIFI_PATCHER
                 bufferC = BT_WIFI.GetOriginalValue9(tbLoadDump.Text);
                 if (Tool.CompareBytes(bufferB, bufferC) == true)
                 {
-                    tbFWStatus.ForeColor = Color.Green;
-                    tbFWStatus.Text = "OK";
+                    label10.ForeColor = Color.Green;
+                    label10.Text = "OK";
                     button2.Enabled = false;
                 }
                 else
                 {
-                    tbFWStatus.ForeColor = Color.Red;
-                    tbFWStatus.Text = "BAD";
+                    label10.ForeColor = Color.Red;
+                    label10.Text = "BAD";
                     button2.Enabled = true;
                 }
-                tbPatchType.Text = "Patch 9";
+                label6.Text = "Patch 9";
             }
             else if (Tool.CompareBytes(bufferA, Patch_10) == true && Tool.CompareBytes(bufferA, FF_16) == false)
             {
@@ -587,17 +588,17 @@ namespace PS4_BT_WIFI_PATCHER
                 bufferC = BT_WIFI.GetOriginalValue10(tbLoadDump.Text);
                 if (Tool.CompareBytes(bufferB, bufferC) == true)
                 {
-                    tbFWStatus.ForeColor = Color.Green;
-                    tbFWStatus.Text = "OK";
+                    label10.ForeColor = Color.Green;
+                    label10.Text = "OK";
                     button2.Enabled = false;
                 }
                 else
                 {
-                    tbFWStatus.ForeColor = Color.Red;
-                    tbFWStatus.Text = "BAD";
+                    label10.ForeColor = Color.Red;
+                    label10.Text = "BAD";
                     button2.Enabled = true;
                 }
-                tbPatchType.Text = "Patch 10";
+                label6.Text = "Patch 10";
             }
             else if (Tool.CompareBytes(bufferA, Patch_11) == true && Tool.CompareBytes(bufferA, FF_16) == false)
             {
@@ -605,17 +606,17 @@ namespace PS4_BT_WIFI_PATCHER
                 bufferC = BT_WIFI.GetOriginalValue11(tbLoadDump.Text);
                 if (Tool.CompareBytes(bufferB, bufferC) == true)
                 {
-                    tbFWStatus.ForeColor = Color.Green;
-                    tbFWStatus.Text = "OK";
+                    label10.ForeColor = Color.Green;
+                    label10.Text = "OK";
                     button2.Enabled = false;
                 }
                 else
                 {
-                    tbFWStatus.ForeColor = Color.Red;
-                    tbFWStatus.Text = "BAD";
+                    label10.ForeColor = Color.Red;
+                    label10.Text = "BAD";
                     button2.Enabled = true;
                 }
-                tbPatchType.Text = "Patch 11";
+                label6.Text = "Patch 11";
             }
             else if (Tool.CompareBytes(bufferA, Patch_12) == true && Tool.CompareBytes(bufferA, FF_16) == false)
             {
@@ -623,17 +624,17 @@ namespace PS4_BT_WIFI_PATCHER
                 bufferC = BT_WIFI.GetOriginalValue12(tbLoadDump.Text);
                 if (Tool.CompareBytes(bufferB, bufferC) == true)
                 {
-                    tbFWStatus.ForeColor = Color.Green;
-                    tbFWStatus.Text = "OK";
+                    label10.ForeColor = Color.Green;
+                    label10.Text = "OK";
                     button2.Enabled = false;
                 }
                 else
                 {
-                    tbFWStatus.ForeColor = Color.Red;
-                    tbFWStatus.Text = "BAD";
+                    label10.ForeColor = Color.Red;
+                    label10.Text = "BAD";
                     button2.Enabled = true;
                 }
-                tbPatchType.Text = "Patch 12";
+                label6.Text = "Patch 12";
             }
             else if (Tool.CompareBytes(bufferA, Patch_13) == true && Tool.CompareBytes(bufferA, FF_16) == false)
             {
@@ -641,24 +642,24 @@ namespace PS4_BT_WIFI_PATCHER
                 bufferC = BT_WIFI.GetOriginalValue13(tbLoadDump.Text);
                 if (Tool.CompareBytes(bufferB, bufferC) == true)
                 {
-                    tbFWStatus.ForeColor = Color.Green;
-                    tbFWStatus.Text = "OK";
+                    label10.ForeColor = Color.Green;
+                    label10.Text = "OK";
                     button2.Enabled = false;
                 }
                 else
                 {
-                    tbFWStatus.ForeColor = Color.Red;
-                    tbFWStatus.Text = "BAD";
+                    label10.ForeColor = Color.Red;
+                    label10.Text = "BAD";
                     button2.Enabled = true;
                 }
-                tbPatchType.Text = "Patch 13";
+                label6.Text = "Patch 13";
             }
             else
             {
                 MessageBox.Show("Could not detected firmware type", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                tbFWStatus.Text = "";
-                tbSize.Text = "";
-                tbPatchType.Text = "";
+                label10.Text = "";
+                label7.Text = "";
+                label6.Text = "";
             }*/
 
 
@@ -739,11 +740,11 @@ namespace PS4_BT_WIFI_PATCHER
                 {
                     MessageBox.Show("Invalid file or corrupt flash dump.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     tbLoadDump.Text = "Select NOR dump";
-                    tbFWStatus.Text = "";
-                    tbPatchType.Text = "";
-                    txtMd5.Text = "";
-                    tbSize.Text = "";
-                    tbActualMD5.Text = "";
+                    label10.Text = "";
+                    label6.Text = "";
+                    label8.Text = "";
+                    label7.Text = "";
+                    label9.Text = "";
                 }
             }
         }
@@ -753,7 +754,7 @@ namespace PS4_BT_WIFI_PATCHER
         {
             string path = Path.GetDirectoryName(tbLoadDump.Text);
             //messagebox
-            MessageBox.Show("Patching start from 0x0144200\n\nPatch size : " + tbSize.Text, "Patching Firmware", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Patching start from 0x0144200\n\nPatch size : " + label7.Text, "Patching Firmware", MessageBoxButtons.OK, MessageBoxIcon.Information);
             //if file not exist, create file
             if (!File.Exists(tbLoadDump.Text + ".BAK"))
             {
@@ -890,6 +891,17 @@ namespace PS4_BT_WIFI_PATCHER
             foreach (byte b in bytes) result += b.ToString("x2");
             return result;
         }
+
+        static string UppercaseFirst(string s)
+    {
+        // Check for empty string.
+        if (string.IsNullOrEmpty(s))
+        {
+            return string.Empty;
+        }
+        // Return char and concat substring.
+        return char.ToUpper(s[0]) + s.Substring(1);
+    }
 
     }
 }
