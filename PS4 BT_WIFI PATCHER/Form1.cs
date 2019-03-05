@@ -16,7 +16,7 @@ namespace PS4_BT_WIFI_PATCHER
 {
     public partial class Form1 : Form
     {
-        //not used
+        /*not used
         #region patchMagic
         //using magic value at 0x144230 to identify firmware type
         static byte[] Patch_1 = new byte[16]
@@ -71,7 +71,7 @@ namespace PS4_BT_WIFI_PATCHER
         {
             0x32, 0x56, 0x57, 0xD0, 0x3E, 0x47, 0x57, 0xF5, 0x01, 0x14, 0x00, 0x84, 0xBD, 0x0B, 0x5C, 0x13,
         };
-        byte[] FF_16 =  Enumerable.Repeat((byte)0xFF, 16).ToArray();
+        byte[] FF_16 =  Enumerable.Repeat((byte)0xFF, 16).ToArray(); */
 
         #endregion patchMagic 
 
