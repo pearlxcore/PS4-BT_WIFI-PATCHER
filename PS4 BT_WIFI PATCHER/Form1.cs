@@ -16,8 +16,9 @@ namespace PS4_BT_WIFI_PATCHER
 {
     public partial class Form1 : Form
     {
-        /*not used
         #region patchMagic
+        /*not used
+        
         //using magic value at 0x144230 to identify firmware type
         static byte[] Patch_1 = new byte[16]
         {
@@ -126,14 +127,14 @@ namespace PS4_BT_WIFI_PATCHER
                     if (Tool.CompareBytes(bufferB, bufferC) == true) // if both hex value is equal, firmware is valid
                     {
                         //show some info
-                        label8.ForeColor = Color.Green;
+                        
                         label10.ForeColor = Color.Green;
                         label10.Text = "OK";
                         button2.Enabled = false;
                     }
                     else //if both hex value is not equal, the firmware is not valid, enable patch button
                     {
-                        label8.ForeColor = Color.Red;
+                        
                         label10.ForeColor = Color.Red;
                         label10.Text = "BAD";
                         button2.Enabled = true;
@@ -150,14 +151,14 @@ namespace PS4_BT_WIFI_PATCHER
                     bufferC = BT_WIFI.GetOriginalValue2(directoryPath + @"\C0020001_extracted\C0020001.bin");
                     if (Tool.CompareBytes(bufferB, bufferC) == true)
                     {
-                        label8.ForeColor = Color.Green;
+                        
                         label10.ForeColor = Color.Green;
                         label10.Text = "OK";
                         button2.Enabled = false;
                     }
                     else
                     {
-                        label8.ForeColor = Color.Red;
+                        
                         label10.ForeColor = Color.Red;
                         label10.Text = "BAD";
                         button2.Enabled = true;
@@ -171,14 +172,14 @@ namespace PS4_BT_WIFI_PATCHER
                     bufferC = BT_WIFI.GetOriginalValue3(directoryPath + @"\C0020001_extracted\C0020001.bin");
                     if (Tool.CompareBytes(bufferB, bufferC) == true)
                     {
-                        label8.ForeColor = Color.Green;
+                        
                         label10.ForeColor = Color.Green;
                         label10.Text = "OK";
                         button2.Enabled = false;
                     }
                     else
                     {
-                        label8.ForeColor = Color.Red;
+                        
                         label10.ForeColor = Color.Red;
                         label10.Text = "BAD";
                         button2.Enabled = true;
@@ -192,14 +193,14 @@ namespace PS4_BT_WIFI_PATCHER
                     bufferC = BT_WIFI.GetOriginalValue4(directoryPath + @"\C0020001_extracted\C0020001.bin");
                     if (Tool.CompareBytes(bufferB, bufferC) == true)
                     {
-                        label8.ForeColor = Color.Green;
+                        
                         label10.ForeColor = Color.Green;
                         label10.Text = "OK";
                         button2.Enabled = false;
                     }
                     else
                     {
-                        label8.ForeColor = Color.Red;
+                        
                         label10.ForeColor = Color.Red;
                         label10.Text = "BAD";
                         button2.Enabled = true;
@@ -213,14 +214,14 @@ namespace PS4_BT_WIFI_PATCHER
                     bufferC = BT_WIFI.GetOriginalValue5(directoryPath + @"\C0020001_extracted\C0020001.bin");
                     if (Tool.CompareBytes(bufferB, bufferC) == true)
                     {
-                        label8.ForeColor = Color.Green;
+                        
                         label10.ForeColor = Color.Green;
                         label10.Text = "OK";
                         button2.Enabled = false;
                     }
                     else
                     {
-                        label8.ForeColor = Color.Red;
+                        
                         label10.ForeColor = Color.Red;
                         label10.Text = "BAD";
                         button2.Enabled = true;
@@ -234,14 +235,14 @@ namespace PS4_BT_WIFI_PATCHER
                     bufferC = BT_WIFI.GetOriginalValue6(directoryPath + @"\C0020001_extracted\C0020001.bin");
                     if (Tool.CompareBytes(bufferB, bufferC) == true)
                     {
-                        label8.ForeColor = Color.Green;
+                        
                         label10.ForeColor = Color.Green;
                         label10.Text = "OK";
                         button2.Enabled = false;
                     }
                     else
                     {
-                        label8.ForeColor = Color.Red;
+                        
                         label10.ForeColor = Color.Red;
                         label10.Text = "BAD";
                         button2.Enabled = true;
@@ -255,7 +256,7 @@ namespace PS4_BT_WIFI_PATCHER
                     bufferC = BT_WIFI.GetOriginalValue7(directoryPath + @"\C0020001_extracted\C0020001.bin");
                     if (Tool.CompareBytes(bufferB, bufferC) == true)
                     {
-                        label8.ForeColor = Color.Green;
+                        
                         label10.ForeColor = Color.Green;
                         label10.Text = "OK";
                         button2.Enabled = false;
@@ -263,7 +264,7 @@ namespace PS4_BT_WIFI_PATCHER
                     else
                     {
                         label10.ForeColor = Color.Red;
-                        label8.ForeColor = Color.Red;
+                        
                         label10.Text = "BAD";
                         button2.Enabled = true;
                     }
@@ -276,14 +277,14 @@ namespace PS4_BT_WIFI_PATCHER
                     bufferC = BT_WIFI.GetOriginalValue8(directoryPath + @"\C0020001_extracted\C0020001.bin");
                     if (Tool.CompareBytes(bufferB, bufferC) == true)
                     {
-                        label8.ForeColor = Color.Green;
+                        
                         label10.ForeColor = Color.Green;
                         label10.Text = "OK";
                         button2.Enabled = false;
                     }
                     else
                     {
-                        label8.ForeColor = Color.Red;
+                        
                         label10.ForeColor = Color.Red;
                         label10.Text = "BAD";
                         button2.Enabled = true;
@@ -297,14 +298,14 @@ namespace PS4_BT_WIFI_PATCHER
                     bufferC = BT_WIFI.GetOriginalValue9(directoryPath + @"\C0020001_extracted\C0020001.bin");
                     if (Tool.CompareBytes(bufferB, bufferC) == true)
                     {
-                        label8.ForeColor = Color.Green;
+                        
                         label10.ForeColor = Color.Green;
                         label10.Text = "OK";
                         button2.Enabled = false;
                     }
                     else
                     {
-                        label8.ForeColor = Color.Red;
+                        
                         label10.ForeColor = Color.Red;
                         label10.Text = "BAD";
                         button2.Enabled = true;
@@ -318,14 +319,14 @@ namespace PS4_BT_WIFI_PATCHER
                     bufferC = BT_WIFI.GetOriginalValue10(directoryPath + @"\C0020001_extracted\C0020001.bin");
                     if (Tool.CompareBytes(bufferB, bufferC) == true)
                     {
-                        label8.ForeColor = Color.Green;
+                        
                         label10.ForeColor = Color.Green;
                         label10.Text = "OK";
                         button2.Enabled = false;
                     }
                     else
                     {
-                        label8.ForeColor = Color.Red;
+                        
                         label10.ForeColor = Color.Red;
                         label10.Text = "BAD";
                         button2.Enabled = true;
@@ -339,14 +340,14 @@ namespace PS4_BT_WIFI_PATCHER
                     bufferC = BT_WIFI.GetOriginalValue11(directoryPath + @"\C0020001_extracted\C0020001.bin");
                     if (Tool.CompareBytes(bufferB, bufferC) == true)
                     {
-                        label8.ForeColor = Color.Green;
+                        
                         label10.ForeColor = Color.Green;
                         label10.Text = "OK";
                         button2.Enabled = false;
                     }
                     else
                     {
-                        label8.ForeColor = Color.Red;
+                        
                         label10.ForeColor = Color.Red;
                         label10.Text = "BAD";
                         button2.Enabled = true;
@@ -360,14 +361,14 @@ namespace PS4_BT_WIFI_PATCHER
                     bufferC = BT_WIFI.GetOriginalValue12(directoryPath + @"\C0020001_extracted\C0020001.bin");
                     if (Tool.CompareBytes(bufferB, bufferC) == true)
                     {
-                        label8.ForeColor = Color.Green;
+                        
                         label10.ForeColor = Color.Green;
                         label10.Text = "OK";
                         button2.Enabled = false;
                     }
                     else
                     {
-                        label8.ForeColor = Color.Red;
+                        
                         label10.ForeColor = Color.Red;
                         label10.Text = "BAD";
                         button2.Enabled = true;
@@ -381,20 +382,62 @@ namespace PS4_BT_WIFI_PATCHER
                     bufferC = BT_WIFI.GetOriginalValue13(directoryPath + @"\C0020001_extracted\C0020001.bin");
                     if (Tool.CompareBytes(bufferB, bufferC) == true)
                     {
-                        label8.ForeColor = Color.Green;
+                        
                         label10.ForeColor = Color.Green;
                         label10.Text = "OK";
                         button2.Enabled = false;
                     }
                     else
                     {
-                        label8.ForeColor = Color.Red;
+                        
                         label10.ForeColor = Color.Red;
                         label10.Text = "BAD";
                         button2.Enabled = true;
                     }
                     label9.Text = "7aa816b366fce4adbec2b07b53e1482f".ToUpper();
                     label6.Text = "Patch 13";
+                }
+                else if (fileSize.ToString() == "453432" || label8.Text == "D7914CEC3A7246A7496990AFECE89E6C")
+                {
+                    bufferB = BT_WIFI.GetPatch_14(null);
+                    bufferC = BT_WIFI.GetOriginalValue14(directoryPath + @"\C0020001_extracted\C0020001.bin");
+                    if (Tool.CompareBytes(bufferB, bufferC) == true)
+                    {
+                        
+                        label10.ForeColor = Color.Green;
+                        label10.Text = "OK";
+                        button2.Enabled = false;
+                    }
+                    else
+                    {
+                        
+                        label10.ForeColor = Color.Red;
+                        label10.Text = "BAD";
+                        button2.Enabled = true;
+                    }
+                    label9.Text = "D7914CEC3A7246A7496990AFECE89E6C".ToUpper();
+                    label6.Text = "Patch 14";
+                }
+                else if (fileSize.ToString() == "433029" || label8.Text == "5F33857A42763B4529184B277D39CF4B")
+                {
+                    bufferB = BT_WIFI.GetPatch_15(null);
+                    bufferC = BT_WIFI.GetOriginalValue15(directoryPath + @"\C0020001_extracted\C0020001.bin");
+                    if (Tool.CompareBytes(bufferB, bufferC) == true)
+                    {
+                        
+                        label10.ForeColor = Color.Green;
+                        label10.Text = "OK";
+                        button2.Enabled = false;
+                    }
+                    else
+                    {
+                        
+                        label10.ForeColor = Color.Red;
+                        label10.Text = "BAD";
+                        button2.Enabled = true;
+                    }
+                    label9.Text = "5F33857A42763B4529184B277D39CF4B".ToUpper();
+                    label6.Text = "Patch 15";
                 }
                 else //if program could not detect the firmware
                 {

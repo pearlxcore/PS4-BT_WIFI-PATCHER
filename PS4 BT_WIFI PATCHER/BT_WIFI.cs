@@ -37,6 +37,8 @@ namespace PS4_BT_WIFI_PATCHER
         static byte[] bufferPatch_11 = new byte[432158];
         static byte[] bufferPatch_12 = new byte[432033];
         static byte[] bufferPatch_13 = new byte[431685];
+        static byte[] bufferPatch_14 = new byte[453432];
+        static byte[] bufferPatch_15 = new byte[433029];
         static byte[] bufferValue_1 = new byte[453028];
         static byte[] bufferValue_2 = new byte[452764];
         static byte[] bufferValue_3 = new byte[452728];
@@ -50,6 +52,9 @@ namespace PS4_BT_WIFI_PATCHER
         static byte[] bufferValue_11 = new byte[432158];
         static byte[] bufferValue_12 = new byte[432033];
         static byte[] bufferValue_13 = new byte[431685];
+        static byte[] bufferValue_14 = new byte[453432];
+        static byte[] bufferValue_15 = new byte[433029];
+
         #endregion BufferBytes
 
         /// <summary>
@@ -216,7 +221,25 @@ namespace PS4_BT_WIFI_PATCHER
             }
         }
 
-        
+        public static byte[] GetPatch_14(string dump)
+        {
+            using (BinaryReader b = new BinaryReader(new FileStream(@"Patches\C0020001_14.bin", FileMode.Open)))
+            {
+                b.BaseStream.Seek(0x000000, SeekOrigin.Begin);
+                b.Read(bufferPatch_14, 0, 453432);
+                return bufferPatch_14;
+            }
+        }
+
+        public static byte[] GetPatch_15(string dump)
+        {
+            using (BinaryReader b = new BinaryReader(new FileStream(@"Patches\C0020001_15.bin", FileMode.Open)))
+            {
+                b.BaseStream.Seek(0x000000, SeekOrigin.Begin);
+                b.Read(bufferPatch_15, 0, 433029);
+                return bufferPatch_15;
+            }
+        }
 
         public static byte[] GetOriginalValue1(string dump)
         {
@@ -345,6 +368,26 @@ namespace PS4_BT_WIFI_PATCHER
                 b.BaseStream.Seek(0, SeekOrigin.Begin);
                 b.Read(bufferValue_13, 0, 431685);
                 return bufferValue_13;
+            }
+        }
+
+        public static byte[] GetOriginalValue14(string dump)
+        {
+            using (BinaryReader b = new BinaryReader(new FileStream(dump, FileMode.Open)))
+            {
+                b.BaseStream.Seek(0, SeekOrigin.Begin);
+                b.Read(bufferValue_14, 0, 453432);
+                return bufferValue_14;
+            }
+        }
+
+        public static byte[] GetOriginalValue15(string dump)
+        {
+            using (BinaryReader b = new BinaryReader(new FileStream(dump, FileMode.Open)))
+            {
+                b.BaseStream.Seek(0, SeekOrigin.Begin);
+                b.Read(bufferValue_15, 0, 433029);
+                return bufferValue_15;
             }
         }
     }
