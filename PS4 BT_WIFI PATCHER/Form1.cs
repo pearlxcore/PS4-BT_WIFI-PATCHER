@@ -89,7 +89,8 @@ namespace PS4_BT_WIFI_PATCHER
         private void CheckTorusFirmware (string str)
         {
             label9.ForeColor = Color.Black;
-            
+            string path = Environment.CurrentDirectory;
+
 
             if (str == "s")
             {
@@ -459,252 +460,11 @@ namespace PS4_BT_WIFI_PATCHER
                 label7.Text = "";
                 label9.Text = "";
             }
-
-            /* old code
-             
-            bufferA = BT_WIFI.GetPatch(tbLoadDump.Text);
-            if (Tool.CompareBytes(bufferA, Patch_1) == true && Tool.CompareBytes(bufferA, FF_16) == false)
+            
+            if (!checkBox1.Checked)
             {
-                bufferB = BT_WIFI.GetPatch_1(null);
-                bufferC = BT_WIFI.GetOriginalValue1(tbLoadDump.Text);
-                if (Tool.CompareBytes (bufferB, bufferC) == true)
-                {
-                    label10.ForeColor = Color.Green;
-                    label10.Text = "OK";
-                    button2.Enabled = false;
-                }
-                else
-                {
-                    label10.ForeColor = Color.Red;
-                    label10.Text = "BAD";
-                    button2.Enabled = true;
-                }
-                label6.Text = "Patch 1";
+                Directory.Delete(path + "\\C0020001_extracted", true);
             }
-            else if (Tool.CompareBytes(bufferA, Patch_2) == true && Tool.CompareBytes(bufferA, FF_16) == false)
-            {
-                bufferB = BT_WIFI.GetPatch_2(null);
-                bufferC = BT_WIFI.GetOriginalValue2(tbLoadDump.Text);
-                if (Tool.CompareBytes(bufferB, bufferC) == true)
-                {
-                    label10.ForeColor = Color.Green;
-                    label10.Text = "OK";
-                    button2.Enabled = false;
-                }
-                else
-                {
-                    label10.ForeColor = Color.Red;
-                    label10.Text = "BAD";
-                    button2.Enabled = true;
-                }
-                label6.Text = "Patch 2";
-            }
-            else if (Tool.CompareBytes(bufferA, Patch_3) == true && Tool.CompareBytes(bufferA, FF_16) == false)
-            {
-                bufferB = BT_WIFI.GetPatch_3(null);
-                bufferC = BT_WIFI.GetOriginalValue3(tbLoadDump.Text);
-                if (Tool.CompareBytes(bufferB, bufferC) == true)
-                {
-                    label10.ForeColor = Color.Green;
-                    label10.Text = "OK";
-                    button2.Enabled = false;
-                }
-                else
-                {
-                    label10.ForeColor = Color.Red;
-                    label10.Text = "BAD";
-                    button2.Enabled = true;
-                }
-                label6.Text = "Patch 3";
-            }
-            else if (Tool.CompareBytes(bufferA, Patch_4) == true && Tool.CompareBytes(bufferA, FF_16) == false)
-            {
-                bufferB = BT_WIFI.GetPatch_4(null);
-                bufferC = BT_WIFI.GetOriginalValue4(tbLoadDump.Text);
-                if (Tool.CompareBytes(bufferB, bufferC) == true)
-                {
-                    label10.ForeColor = Color.Green;
-                    label10.Text = "OK";
-                    button2.Enabled = false;
-                }
-                else
-                {
-                    label10.ForeColor = Color.Red;
-                    label10.Text = "BAD";
-                    button2.Enabled = true;
-                }
-                label6.Text = "Patch 4";
-            }
-            else if (Tool.CompareBytes(bufferA, Patch_5) == true && Tool.CompareBytes(bufferA, FF_16) == false)
-            {
-                bufferB = BT_WIFI.GetPatch_5(null);
-                bufferC = BT_WIFI.GetOriginalValue5(tbLoadDump.Text);
-                if (Tool.CompareBytes(bufferB, bufferC) == true)
-                {
-                    label10.ForeColor = Color.Green;
-                    label10.Text = "OK";
-                    button2.Enabled = false;
-                }
-                else
-                {
-                    label10.ForeColor = Color.Red;
-                    label10.Text = "BAD";
-                    button2.Enabled = true;
-                }
-                label6.Text = "Patch 5";
-            }
-            else if (Tool.CompareBytes(bufferA, Patch_6) == true && Tool.CompareBytes(bufferA, FF_16) == false)
-            {
-                bufferB = BT_WIFI.GetPatch_6(null);
-                bufferC = BT_WIFI.GetOriginalValue6(tbLoadDump.Text);
-                if (Tool.CompareBytes(bufferB, bufferC) == true)
-                {
-                    label10.ForeColor = Color.Green;
-                    label10.Text = "OK";
-                    button2.Enabled = false;
-                }
-                else
-                {
-                    label10.ForeColor = Color.Red;
-                    label10.Text = "BAD";
-                    button2.Enabled = true;
-                }
-                label6.Text = "Patch 6";
-            }
-            else if (Tool.CompareBytes(bufferA, Patch_7) == true && Tool.CompareBytes(bufferA, FF_16) == false)
-            {
-                bufferB = BT_WIFI.GetPatch_7(null);
-                bufferC = BT_WIFI.GetOriginalValue7(tbLoadDump.Text);
-                if (Tool.CompareBytes(bufferB, bufferC) == true)
-                {
-                    label10.ForeColor = Color.Green;
-                    label10.Text = "OK";
-                    button2.Enabled = false;
-                }
-                else
-                {
-                    label10.ForeColor = Color.Red;
-                    label10.Text = "BAD";
-                    button2.Enabled = true;
-                }
-                label6.Text = "Patch 7";
-            }
-            else if (Tool.CompareBytes(bufferA, Patch_8) == true && Tool.CompareBytes(bufferA, FF_16) == false)
-            {
-                bufferB = BT_WIFI.GetPatch_8(null);
-                bufferC = BT_WIFI.GetOriginalValue8(tbLoadDump.Text);
-                if (Tool.CompareBytes(bufferB, bufferC) == true)
-                {
-                    label10.ForeColor = Color.Green;
-                    label10.Text = "OK";
-                    button2.Enabled = false;
-                }
-                else
-                {
-                    label10.ForeColor = Color.Red;
-                    label10.Text = "BAD";
-                    button2.Enabled = true;
-                }
-                label6.Text = "Patch 8";
-            }
-            else if (Tool.CompareBytes(bufferA, Patch_9) == true && Tool.CompareBytes(bufferA, FF_16) == false)
-            {
-                bufferB = BT_WIFI.GetPatch_9(null);
-                bufferC = BT_WIFI.GetOriginalValue9(tbLoadDump.Text);
-                if (Tool.CompareBytes(bufferB, bufferC) == true)
-                {
-                    label10.ForeColor = Color.Green;
-                    label10.Text = "OK";
-                    button2.Enabled = false;
-                }
-                else
-                {
-                    label10.ForeColor = Color.Red;
-                    label10.Text = "BAD";
-                    button2.Enabled = true;
-                }
-                label6.Text = "Patch 9";
-            }
-            else if (Tool.CompareBytes(bufferA, Patch_10) == true && Tool.CompareBytes(bufferA, FF_16) == false)
-            {
-                bufferB = BT_WIFI.GetPatch_10(null);
-                bufferC = BT_WIFI.GetOriginalValue10(tbLoadDump.Text);
-                if (Tool.CompareBytes(bufferB, bufferC) == true)
-                {
-                    label10.ForeColor = Color.Green;
-                    label10.Text = "OK";
-                    button2.Enabled = false;
-                }
-                else
-                {
-                    label10.ForeColor = Color.Red;
-                    label10.Text = "BAD";
-                    button2.Enabled = true;
-                }
-                label6.Text = "Patch 10";
-            }
-            else if (Tool.CompareBytes(bufferA, Patch_11) == true && Tool.CompareBytes(bufferA, FF_16) == false)
-            {
-                bufferB = BT_WIFI.GetPatch_11(null);
-                bufferC = BT_WIFI.GetOriginalValue11(tbLoadDump.Text);
-                if (Tool.CompareBytes(bufferB, bufferC) == true)
-                {
-                    label10.ForeColor = Color.Green;
-                    label10.Text = "OK";
-                    button2.Enabled = false;
-                }
-                else
-                {
-                    label10.ForeColor = Color.Red;
-                    label10.Text = "BAD";
-                    button2.Enabled = true;
-                }
-                label6.Text = "Patch 11";
-            }
-            else if (Tool.CompareBytes(bufferA, Patch_12) == true && Tool.CompareBytes(bufferA, FF_16) == false)
-            {
-                bufferB = BT_WIFI.GetPatch_12(null);
-                bufferC = BT_WIFI.GetOriginalValue12(tbLoadDump.Text);
-                if (Tool.CompareBytes(bufferB, bufferC) == true)
-                {
-                    label10.ForeColor = Color.Green;
-                    label10.Text = "OK";
-                    button2.Enabled = false;
-                }
-                else
-                {
-                    label10.ForeColor = Color.Red;
-                    label10.Text = "BAD";
-                    button2.Enabled = true;
-                }
-                label6.Text = "Patch 12";
-            }
-            else if (Tool.CompareBytes(bufferA, Patch_13) == true && Tool.CompareBytes(bufferA, FF_16) == false)
-            {
-                bufferB = BT_WIFI.GetPatch_13(null);
-                bufferC = BT_WIFI.GetOriginalValue13(tbLoadDump.Text);
-                if (Tool.CompareBytes(bufferB, bufferC) == true)
-                {
-                    label10.ForeColor = Color.Green;
-                    label10.Text = "OK";
-                    button2.Enabled = false;
-                }
-                else
-                {
-                    label10.ForeColor = Color.Red;
-                    label10.Text = "BAD";
-                    button2.Enabled = true;
-                }
-                label6.Text = "Patch 13";
-            }
-            else
-            {
-                MessageBox.Show("Could not detected firmware type", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                label10.Text = "";
-                label7.Text = "";
-                label6.Text = "";
-            }*/
-
 
         }
         
@@ -759,9 +519,11 @@ namespace PS4_BT_WIFI_PATCHER
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
-            //when the program exist, delete patches dir
             string path = Environment.CurrentDirectory;
-            Directory.Delete(path + "\\Patches", true);
+            if (Directory.Exists(path + "\\Patches"))
+            {
+                Directory.Delete(path + "\\Patches", true);
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
