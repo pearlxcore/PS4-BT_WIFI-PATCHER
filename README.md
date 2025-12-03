@@ -4,6 +4,9 @@ PS4 BT_WIFI Patcher is a simple tool to repair Bt/Wifi Firmware.
 This firmware known to be corrupted and causing the DS4 controller fail to connect 
 to PS4 console wirelessly.
 
+[![Github All Releases](https://img.shields.io/github/downloads/pearlxcore/PS4-BT_WIFI-PATCHER/total.svg)]()
+
+
 # How do you know you need it repaired?
 
 If DS4 controller does not sync anywhere but the safe mode menu then the Bt/Wifi firmware is corrupted.
